@@ -11,7 +11,7 @@ export default function Show(props) {
     props.history.push("/");
   };
 
-  const ingredientList = recipe.ingredients.map((ingredient) => {
+  const ingredientList = recipe.ingredients.map((ingredient, idx) => {
     let fullIngredient;
     let prefix;
     if (ingredient.measurement || ingredient.amount) {
@@ -22,15 +22,15 @@ export default function Show(props) {
     } else {
       fullIngredient = capitalizeFirstLtr(ingredient.name);
     }
-    return <li>{fullIngredient}</li>;
+    return <li key={idx}>{fullIngredient}</li>;
   });
 
-  const instructions = recipe.instructions.map((instruction) => (
-    <li>{capitalizeFirstLtr(instruction)}</li>
+  const instructions = recipe.instructions.map((instruction, idx) => (
+    <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
   ));
 
   return (
-    <div classaName="recipe">
+    <div className="recipe">
       <h1>{recipe.name}</h1>
       {recipe.image && <img src={recipe.image} alt={recipe.name} />}
       <h3>Ingredients</h3>

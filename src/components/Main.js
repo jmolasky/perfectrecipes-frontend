@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
+import Add from "../pages/Add";
 
 export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
@@ -27,6 +28,9 @@ export default function Main(props) {
       <Switch>
         <Route exact path="/">
           <Index recipes={recipes} />
+        </Route>
+        <Route path="/add">
+          <Add />
         </Route>
         <Route
           path="/:id"
