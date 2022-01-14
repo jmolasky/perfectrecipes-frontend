@@ -1,9 +1,15 @@
 export default function Show(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
-  function capitalizeFirstLtr(string) {
+
+  const capitalizeFirstLtr = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
+
+  const handleClick = () => {
+    props.deleteRecipes(id);
+    props.history.push("/");
+  };
 
   const ingredientList = recipe.ingredients.map((ingredient) => {
     let fullIngredient;
@@ -32,6 +38,9 @@ export default function Show(props) {
       <br />
       <h3>Instructions</h3>
       <ol>{instructions}</ol>
+      <button id="delete" onClick={handleClick}>
+        Delete Recipe
+      </button>
     </div>
   );
 }

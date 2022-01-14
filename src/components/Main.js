@@ -13,6 +13,13 @@ export default function Main(props) {
     setRecipes(data);
   };
 
+  const deleteRecipes = async (id) => {
+    await fetch(URL + id, {
+      method: "DELETE",
+    });
+    getRecipes();
+  };
+
   useEffect(() => getRecipes(), []);
 
   return (
@@ -23,7 +30,9 @@ export default function Main(props) {
         </Route>
         <Route
           path="/:id"
-          render={(rp) => <Show {...rp} recipes={recipes} />}
+          render={(rp) => (
+            <Show {...rp} recipes={recipes} deleteRecipes={deleteRecipes} />
+          )}
         />
       </Switch>
     </main>
