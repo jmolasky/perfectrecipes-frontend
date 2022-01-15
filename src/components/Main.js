@@ -14,6 +14,16 @@ export default function Main(props) {
     setRecipes(data);
   };
 
+  const createRecipes = async (recipe) => {
+    await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: JSON.stringify(recipe),
+    });
+  };
+
   const deleteRecipes = async (id) => {
     await fetch(URL + id, {
       method: "DELETE",
@@ -30,7 +40,7 @@ export default function Main(props) {
           <Index recipes={recipes} />
         </Route>
         <Route path="/add">
-          <Add />
+          <Add createRecipes={createRecipes} />
         </Route>
         <Route
           path="/:id"
