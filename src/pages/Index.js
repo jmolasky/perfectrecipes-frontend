@@ -1,6 +1,9 @@
+// import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Index(props) {
+  // useEffect(() => props.getRecipes(), []);
+
   const loaded = () => {
     return props.recipes.map((recipe) => (
       <div key={recipe._id} className="recipe">

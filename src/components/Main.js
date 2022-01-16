@@ -22,6 +22,7 @@ export default function Main(props) {
       },
       body: JSON.stringify(recipe),
     });
+    getRecipes();
   };
 
   const deleteRecipes = async (id) => {
@@ -37,7 +38,7 @@ export default function Main(props) {
     <main>
       <Switch>
         <Route exact path="/">
-          <Index recipes={recipes} />
+          <Index recipes={recipes} getRecipes={getRecipes} />
         </Route>
         <Route
           path="/add"
