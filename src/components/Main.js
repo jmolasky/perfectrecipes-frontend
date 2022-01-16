@@ -39,9 +39,10 @@ export default function Main(props) {
         <Route exact path="/">
           <Index recipes={recipes} />
         </Route>
-        <Route path="/add">
-          <Add createRecipes={createRecipes} />
-        </Route>
+        <Route
+          path="/add"
+          render={(rp) => <Add {...rp} createRecipes={createRecipes} />}
+        ></Route>
         <Route
           path="/:id"
           render={(rp) => (

@@ -24,12 +24,15 @@ export default function Add(props) {
 
   const [instructionInput, setInstructionInput] = useState("");
 
+  // array of ingredients to add to DOM
   const ingredients = getIngredientList(recipeData.ingredients);
 
+  // array of instruction sto add to DOM
   const instructions = recipeData.instructions.map((instruction, idx) => (
     <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
   ));
 
+  // controls name and image fields
   const handleNameOrImageChange = (evt) => {
     setRecipeData({
       ...recipeData,
@@ -37,6 +40,7 @@ export default function Add(props) {
     });
   };
 
+  // controls ingredient fields
   const handleIngredientChange = (evt) => {
     setIngredientInput({
       ...ingredientInput,
@@ -44,10 +48,12 @@ export default function Add(props) {
     });
   };
 
+  // controls instruction fields
   const handleInstructionChange = (evt) => {
     setInstructionInput(evt.target.value);
   };
 
+  // adds ingredient to recipeData state
   const handleAddIngredient = (evt) => {
     evt.preventDefault();
     setRecipeData({
@@ -57,6 +63,7 @@ export default function Add(props) {
     setIngredientInput(blankIngredient);
   };
 
+  // adds instruction to recipeData state
   const handleAddInstruction = (evt) => {
     evt.preventDefault();
     setRecipeData({
@@ -66,6 +73,7 @@ export default function Add(props) {
     setInstructionInput("");
   };
 
+  // adds new recipe to user's account and redirects to home page
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.createRecipes(recipeData);
@@ -96,7 +104,7 @@ export default function Add(props) {
           onChange={handleNameOrImageChange}
         />
         <h3>Add Ingredients:</h3>
-        <label htmlFor="amount">Amount</label>
+        <label htmlFor="amount">Amount: </label>
         <input
           type="number"
           name="amount"
@@ -104,7 +112,8 @@ export default function Add(props) {
           placeholder="amount"
           onChange={handleIngredientChange}
         />
-        <label htmlFor="measurement">Measurement</label>
+        <br />
+        <label htmlFor="measurement">Measurement: </label>
         <input
           type="text"
           name="measurement"
@@ -112,6 +121,7 @@ export default function Add(props) {
           placeholder="cups, oz etc."
           onChange={handleIngredientChange}
         />
+        <br />
         <label htmlFor="name">Ingredient name: </label>
         <input
           type="text"
@@ -120,6 +130,7 @@ export default function Add(props) {
           placeholder="ingredient"
           onChange={handleIngredientChange}
         />
+        <br />
         <button onClick={handleAddIngredient}>Add Ingredient</button>
         <br />
         <h3>Add Instructions:</h3>
