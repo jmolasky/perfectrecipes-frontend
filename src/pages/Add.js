@@ -1,6 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export default function Add(props) {
+  const capitalizeFirstLtr = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   const [recipeData, setRecipeData] = useState({
     name: "",
     ingredients: [],
@@ -15,6 +19,20 @@ export default function Add(props) {
   };
 
   const [ingredientInput, setIngredientInput] = useState(blankIngredient);
+
+  const ingredients = recipeData.ingredients.map((ingredient, idx) => {
+    let fullIngredient;
+    let prefix;
+    if (ingredient.measurement || ingredient.amount) {
+      prefix = ingredient.measurement
+        ? ingredient.measurement
+        : ingredient.amount;
+      fullIngredient = capitalizeFirstLtr(`${prefix} ${ingredient.name}`);
+    } else {
+      fullIngredient = capitalizeFirstLtr(ingredient.name);
+    }
+    return <li key={idx}>{fullIngredient}</li>;
+  });
 
   const handleNameChange = (evt) => {
     setRecipeData({
@@ -60,7 +78,8 @@ export default function Add(props) {
           onChange={handleNameChange}
         />
         <br />
-        <label htmlFor="ingredients">Input Ingredient name: </label>
+        <h3>Add Ingredients:</h3>
+        <label htmlFor="name">Ingredient name: </label>
         <input
           type="text"
           name="name"
@@ -68,8 +87,25 @@ export default function Add(props) {
           placeholder="ingredient"
           onChange={handleIngredientChange}
         />
+        <label htmlFor="measurement">Measurement</label>
+        <input
+          type="text"
+          name="measurement"
+          value={ingredientInput.measurement}
+          placeholder="cups, oz etc."
+          onChange={handleIngredientChange}
+        />
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="number"
+          name="amount"
+          value={ingredientInput.amount}
+          placeholder="amount"
+          onChange={handleIngredientChange}
+        />
         <button onClick={handleAddIngredient}>Add Ingredient</button>
         <br />
+        <h3>Add Instructions:</h3>
         <label htmlFor="instructions">Input Instructions: </label>
         <input type="text" name="instructions" placeholder="instruction" />
         <button>Add Instruction</button>
@@ -77,7 +113,7 @@ export default function Add(props) {
         <input type="submit" value="Add Recipe" />
       </form>
       <h3>Ingredients:</h3>
-      <ul></ul>
+      <ul>{ingredients}</ul>
       <h3>Instructions:</h3>
       <ol></ol>
     </div>
