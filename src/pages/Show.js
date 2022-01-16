@@ -12,16 +12,15 @@ export default function Show(props) {
   };
 
   const ingredientList = recipe.ingredients.map((ingredient, idx) => {
-    let fullIngredient;
-    let prefix;
-    if (ingredient.measurement || ingredient.amount) {
-      prefix = ingredient.measurement
-        ? ingredient.measurement
-        : ingredient.amount;
-      fullIngredient = capitalizeFirstLtr(`${prefix} ${ingredient.name}`);
-    } else {
-      fullIngredient = capitalizeFirstLtr(ingredient.name);
-    }
+    let fullIngredient = ingredient.name;
+
+    if (ingredient.measurement)
+      fullIngredient = `${ingredient.measurement} ${fullIngredient}`;
+
+    if (ingredient.amount)
+      fullIngredient = `${ingredient.amount} ${fullIngredient}`;
+
+    fullIngredient = capitalizeFirstLtr(fullIngredient);
     return <li key={idx}>{fullIngredient}</li>;
   });
 

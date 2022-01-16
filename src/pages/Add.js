@@ -5,6 +5,7 @@ export default function Add(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  // creates object in state that will be sent to server to be added to database
   const [recipeData, setRecipeData] = useState({
     name: "",
     ingredients: [],
@@ -12,6 +13,7 @@ export default function Add(props) {
     image: "",
   });
 
+  // to initialize/reset ingredient form inputs
   const blankIngredient = {
     name: "",
     measurement: "",
@@ -20,21 +22,26 @@ export default function Add(props) {
 
   const [ingredientInput, setIngredientInput] = useState(blankIngredient);
 
+  const [instructionInput, setInstructionInput] = useState("");
+
   const ingredients = recipeData.ingredients.map((ingredient, idx) => {
-    let fullIngredient;
-    let prefix;
-    if (ingredient.measurement || ingredient.amount) {
-      prefix = ingredient.measurement
-        ? ingredient.measurement
-        : ingredient.amount;
-      fullIngredient = capitalizeFirstLtr(`${prefix} ${ingredient.name}`);
-    } else {
-      fullIngredient = capitalizeFirstLtr(ingredient.name);
-    }
+    let fullIngredient = ingredient.name;
+
+    if (ingredient.measurement)
+      fullIngredient = `${ingredient.measurement} ${fullIngredient}`;
+
+    if (ingredient.amount)
+      fullIngredient = `${ingredient.amount} ${fullIngredient}`;
+
+    fullIngredient = capitalizeFirstLtr(fullIngredient);
     return <li key={idx}>{fullIngredient}</li>;
   });
 
-  const handleNameChange = (evt) => {
+  const instructions = recipeData.instructions.map((instruction, idx) => (
+    <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
+  ));
+
+  const handleNameOrImageChange = (evt) => {
     setRecipeData({
       ...recipeData,
       [evt.target.name]: evt.target.value,
@@ -48,6 +55,10 @@ export default function Add(props) {
     });
   };
 
+  const handleInstructionChange = (evt) => {
+    setInstructionInput(evt.target.value);
+  };
+
   const handleAddIngredient = (evt) => {
     evt.preventDefault();
     setRecipeData({
@@ -55,6 +66,15 @@ export default function Add(props) {
       ingredients: [...recipeData.ingredients, ingredientInput],
     });
     setIngredientInput(blankIngredient);
+  };
+
+  const handleAddInstruction = (evt) => {
+    evt.preventDefault();
+    setRecipeData({
+      ...recipeData,
+      instructions: [...recipeData.instructions, instructionInput],
+    });
+    setInstructionInput("");
   };
 
   const handleSubmit = (evt) => {
@@ -75,16 +95,24 @@ export default function Add(props) {
           name="name"
           value={recipeData.name}
           placeholder="name"
-          onChange={handleNameChange}
+          onChange={handleNameOrImageChange}
         />
         <br />
-        <h3>Add Ingredients:</h3>
-        <label htmlFor="name">Ingredient name: </label>
+        <label htmlFor="image">Image URL: </label>
         <input
           type="text"
-          name="name"
-          value={ingredientInput.name}
-          placeholder="ingredient"
+          name="image"
+          value={recipeData.image}
+          placeholder="image url"
+          onChange={handleNameOrImageChange}
+        />
+        <h3>Add Ingredients:</h3>
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="number"
+          name="amount"
+          value={ingredientInput.amount}
+          placeholder="amount"
           onChange={handleIngredientChange}
         />
         <label htmlFor="measurement">Measurement</label>
@@ -95,27 +123,34 @@ export default function Add(props) {
           placeholder="cups, oz etc."
           onChange={handleIngredientChange}
         />
-        <label htmlFor="amount">Amount</label>
+        <label htmlFor="name">Ingredient name: </label>
         <input
-          type="number"
-          name="amount"
-          value={ingredientInput.amount}
-          placeholder="amount"
+          type="text"
+          name="name"
+          value={ingredientInput.name}
+          placeholder="ingredient"
           onChange={handleIngredientChange}
         />
         <button onClick={handleAddIngredient}>Add Ingredient</button>
         <br />
         <h3>Add Instructions:</h3>
         <label htmlFor="instructions">Input Instructions: </label>
-        <input type="text" name="instructions" placeholder="instruction" />
-        <button>Add Instruction</button>
+        <textarea
+          name="instructions"
+          value={instructionInput}
+          cols="60"
+          rows="5"
+          placeholder="instruction"
+          onChange={handleInstructionChange}
+        ></textarea>
+        <button onClick={handleAddInstruction}>Add Instruction</button>
         <br />
         <input type="submit" value="Add Recipe" />
       </form>
       <h3>Ingredients:</h3>
       <ul>{ingredients}</ul>
       <h3>Instructions:</h3>
-      <ol></ol>
+      <ol>{instructions}</ol>
     </div>
   );
 }
