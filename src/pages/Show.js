@@ -1,28 +1,18 @@
+import {
+  capitalizeFirstLtr,
+  getIngredientList,
+} from "../services/helperFunctions";
+
 export default function Show(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
-
-  const capitalizeFirstLtr = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
 
   const handleClick = () => {
     props.deleteRecipes(id);
     props.history.push("/");
   };
 
-  const ingredientList = recipe.ingredients.map((ingredient, idx) => {
-    let fullIngredient = ingredient.name;
-
-    if (ingredient.measurement)
-      fullIngredient = `${ingredient.measurement} ${fullIngredient}`;
-
-    if (ingredient.amount)
-      fullIngredient = `${ingredient.amount} ${fullIngredient}`;
-
-    fullIngredient = capitalizeFirstLtr(fullIngredient);
-    return <li key={idx}>{fullIngredient}</li>;
-  });
+  const ingredientList = getIngredientList(recipe.ingredients);
 
   const instructions = recipe.instructions.map((instruction, idx) => (
     <li key={idx}>{capitalizeFirstLtr(instruction)}</li>

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import {
+  capitalizeFirstLtr,
+  getIngredientList,
+} from "../services/helperFunctions";
 
 export default function Add(props) {
-  const capitalizeFirstLtr = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   // creates object in state that will be sent to server to be added to database
   const [recipeData, setRecipeData] = useState({
     name: "",
@@ -24,18 +24,7 @@ export default function Add(props) {
 
   const [instructionInput, setInstructionInput] = useState("");
 
-  const ingredients = recipeData.ingredients.map((ingredient, idx) => {
-    let fullIngredient = ingredient.name;
-
-    if (ingredient.measurement)
-      fullIngredient = `${ingredient.measurement} ${fullIngredient}`;
-
-    if (ingredient.amount)
-      fullIngredient = `${ingredient.amount} ${fullIngredient}`;
-
-    fullIngredient = capitalizeFirstLtr(fullIngredient);
-    return <li key={idx}>{fullIngredient}</li>;
-  });
+  const ingredients = getIngredientList(recipeData.ingredients);
 
   const instructions = recipeData.instructions.map((instruction, idx) => (
     <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
