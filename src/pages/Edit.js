@@ -3,18 +3,9 @@ import {
   getIngredientList,
 } from "../services/helperFunctions";
 
-export default function Show(props) {
+export default function Edit(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
-
-  const handleDelete = () => {
-    props.deleteRecipes(id);
-    props.history.push("/");
-  };
-
-  const handleEditBtnClick = () => {
-    props.history.push(`/${id}/edit`);
-  };
 
   const ingredientList = getIngredientList(recipe.ingredients);
 
@@ -47,12 +38,6 @@ export default function Show(props) {
         <h3>Instructions</h3>
         <ol>{instructions}</ol>
       </div>
-      <button id="delete" onClick={handleDelete}>
-        Delete Recipe
-      </button>
-      <button id="edit" onClick={handleEditBtnClick}>
-        Edit Recipe
-      </button>
     </div>
   );
 }
