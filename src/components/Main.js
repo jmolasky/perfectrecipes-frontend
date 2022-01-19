@@ -33,6 +33,17 @@ export default function Main(props) {
     getRecipes();
   };
 
+  const updateRecipes = async (recipe, id) => {
+    await fetch(URL + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: JSON.stringify(recipe),
+    });
+    getRecipes();
+  };
+
   useEffect(() => getRecipes(), []);
 
   return (
@@ -51,7 +62,9 @@ export default function Main(props) {
         ></Route>
         <Route
           path="/:id/edit"
-          render={(rp) => <Edit {...rp} recipes={recipes} />}
+          render={(rp) => (
+            <Edit {...rp} recipes={recipes} updateRecipes={updateRecipes} />
+          )}
         />
         <Route
           path="/:id"

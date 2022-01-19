@@ -16,11 +16,12 @@ export default function Show(props) {
     props.history.push(`/${id}/edit`);
   };
 
+  // make this a component?
   const ingredientList = getIngredientList(recipe.ingredients);
 
-  const instructions = recipe.instructions.map((instruction, idx) => (
-    <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
-  ));
+  // const instructions = recipe.instructions.map((instruction, idx) => (
+  //   <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
+  // ));
 
   return (
     <div style={{ margin: "1rem" }}>
@@ -45,7 +46,8 @@ export default function Show(props) {
       </div>
       <div className="instructions">
         <h3>Instructions</h3>
-        <ol>{instructions}</ol>
+        {/* <ol>{instructions}</ol> */}
+        <p style={{ whiteSpace: "pre" }}>{recipe.instructions}</p>
       </div>
       <button id="delete" onClick={handleDelete}>
         Delete Recipe

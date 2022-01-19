@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   capitalizeFirstLtr,
   getIngredientList,
@@ -7,16 +8,27 @@ export default function Edit(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
 
-  const ingredientList = getIngredientList(recipe.ingredients);
+  const [recipeToEdit, setRecipeToEdit] = useState(recipe);
 
-  const instructions = recipe.instructions.map((instruction, idx) => (
-    <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
-  ));
+  const ingredientList = getIngredientList(recipeToEdit.ingredients);
+
+  const handleChange = (evt) => {
+    setRecipeToEdit({
+      ...recipeToEdit,
+      [evt.target.name]: evt.target.value,
+    });
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    props.updateRecipes(recipeToEdit, id);
+    props.history.push(`/${id}`);
+  };
 
   return (
     <div style={{ margin: "1rem" }}>
-      <h1 style={{ textAlign: "center" }}>{recipe.name}</h1>
-      {recipe.image && (
+      <h1 style={{ textAlign: "center" }}>{recipeToEdit.name}</h1>
+      {recipeToEdit.image && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img
             style={{
@@ -25,8 +37,8 @@ export default function Edit(props) {
               height: "auto",
               margin: "0 auto",
             }}
-            src={recipe.image}
-            alt={recipe.name}
+            src={recipeToEdit.image}
+            alt={recipeToEdit.name}
           />
         </div>
       )}
@@ -36,8 +48,16 @@ export default function Edit(props) {
       </div>
       <div className="instructions">
         <h3>Instructions</h3>
-        <ol>{instructions}</ol>
+        <textarea
+          name="instructions"
+          id=""
+          cols="50"
+          rows="8"
+          value={recipeToEdit.instructions}
+          onChange={handleChange}
+        ></textarea>
       </div>
+      <button onClick={handleSubmit}>Submit Changes</button>
     </div>
   );
 }

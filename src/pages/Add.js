@@ -9,7 +9,7 @@ export default function Add(props) {
   const [recipeData, setRecipeData] = useState({
     name: "",
     ingredients: [],
-    instructions: [],
+    instructions: "",
     image: "",
   });
 
@@ -22,18 +22,18 @@ export default function Add(props) {
 
   const [ingredientInput, setIngredientInput] = useState(blankIngredient);
 
-  const [instructionInput, setInstructionInput] = useState("");
+  // const [instructionsInput, setInstructionsInput] = useState("");
 
   // array of ingredients to add to DOM
   const ingredients = getIngredientList(recipeData.ingredients);
 
   // array of instruction sto add to DOM
-  const instructions = recipeData.instructions.map((instruction, idx) => (
-    <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
-  ));
+  // const instructions = recipeData.instructions.map((instruction, idx) => (
+  //   <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
+  // ));
 
-  // controls name and image fields
-  const handleNameOrImageChange = (evt) => {
+  // controls input fields
+  const handleChange = (evt) => {
     setRecipeData({
       ...recipeData,
       [evt.target.name]: evt.target.value,
@@ -49,9 +49,9 @@ export default function Add(props) {
   };
 
   // controls instruction fields
-  const handleInstructionChange = (evt) => {
-    setInstructionInput(evt.target.value);
-  };
+  // const handleInstructionsChange = (evt) => {
+  //   setInstructionsInput(evt.target.value);
+  // };
 
   // adds ingredient to recipeData state
   const handleAddIngredient = (evt) => {
@@ -64,14 +64,14 @@ export default function Add(props) {
   };
 
   // adds instruction to recipeData state
-  const handleAddInstruction = (evt) => {
-    evt.preventDefault();
-    setRecipeData({
-      ...recipeData,
-      instructions: [...recipeData.instructions, instructionInput],
-    });
-    setInstructionInput("");
-  };
+  // const handleAddInstruction = (evt) => {
+  //   evt.preventDefault();
+  //   setRecipeData({
+  //     ...recipeData,
+  //     instructions: [...recipeData.instructions, instructionsInput],
+  //   });
+  //   setInstructionsInput("");
+  // };
 
   // adds new recipe to user's account and redirects to home page
   const handleSubmit = (evt) => {
@@ -92,7 +92,7 @@ export default function Add(props) {
           name="name"
           value={recipeData.name}
           placeholder="name"
-          onChange={handleNameOrImageChange}
+          onChange={handleChange}
         />
         <br />
         <label htmlFor="image">Image URL: </label>
@@ -101,7 +101,7 @@ export default function Add(props) {
           name="image"
           value={recipeData.image}
           placeholder="image url"
-          onChange={handleNameOrImageChange}
+          onChange={handleChange}
         />
         <h3>Add Ingredients:</h3>
         <label htmlFor="amount">Amount: </label>
@@ -137,20 +137,19 @@ export default function Add(props) {
         <label htmlFor="instructions">Input Instructions: </label>
         <textarea
           name="instructions"
-          value={instructionInput}
+          // value={instructionsInput}
+          value={recipeData.instructions}
           cols="60"
-          rows="5"
-          placeholder="instruction"
-          onChange={handleInstructionChange}
+          rows="8"
+          placeholder="instructions"
+          onChange={handleChange}
         ></textarea>
-        <button onClick={handleAddInstruction}>Add Instruction</button>
+        {/* <button onClick={handleAddInstruction}>Add Instruction</button> */}
         <br />
         <input type="submit" value="Add Recipe" />
       </form>
       <h3>Ingredients:</h3>
       <ul>{ingredients}</ul>
-      <h3>Instructions:</h3>
-      <ol>{instructions}</ol>
     </div>
   );
 }
