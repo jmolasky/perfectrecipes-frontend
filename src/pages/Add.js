@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  capitalizeFirstLtr,
-  getIngredientList,
-} from "../services/helperFunctions";
+import update from "immutability-helper";
 
 export default function Add(props) {
   // creates object in state that will be sent to server to be added to database
@@ -13,18 +10,6 @@ export default function Add(props) {
     image: "",
   });
 
-  // to initialize/reset ingredient form inputs
-  const blankIngredient = {
-    name: "",
-    measurement: "",
-    amount: "",
-  };
-
-  const [ingredientInput, setIngredientInput] = useState(blankIngredient);
-
-  // array of ingredients to add to DOM
-  const ingredients = getIngredientList(recipeData.ingredients);
-
   // controls input fields
   const handleChange = (evt) => {
     setRecipeData({
@@ -33,30 +18,47 @@ export default function Add(props) {
     });
   };
 
-  // controls ingredient fields
-  const handleIngredientChange = (evt) => {
-    setIngredientInput({
-      ...ingredientInput,
-      [evt.target.name]: evt.target.value,
-    });
-  };
-
-  // adds ingredient to recipeData state
-  const handleAddIngredient = (evt) => {
-    evt.preventDefault();
-    setRecipeData({
-      ...recipeData,
-      ingredients: [...recipeData.ingredients, ingredientInput],
-    });
-    setIngredientInput(blankIngredient);
-  };
-
   // adds new recipe to user's account and redirects to home page
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.createRecipes(recipeData);
     props.history.push("/");
   };
+
+  const handleAddIngredient = (evt) => {
+    evt.preventDefault();
+    const oldArray = recipeData.ingredients;
+    const newArray = update(oldArray, { $push: [""] });
+    setRecipeData({
+      ...recipeData,
+      ingredients: newArray,
+    });
+  };
+
+  const handleIngredientChange = (evt) => {
+    const oldArray = recipeData.ingredients;
+    const i = evt.target.name;
+    const newValue = evt.target.value;
+    const newArray = update(oldArray, { [i]: { $set: newValue } });
+    setRecipeData({
+      ...recipeData,
+      ingredients: newArray,
+    });
+  };
+
+  const ingredientInputs = recipeData.ingredients.map((ingredient, idx) => {
+    return (
+      <div key={idx}>
+        <input
+          type="text"
+          name={idx}
+          value={ingredient}
+          placeholder="ingredient"
+          onChange={handleIngredientChange}
+        />
+      </div>
+    );
+  });
 
   return (
     <div className="add" style={{ margin: "1rem" }}>
@@ -95,37 +97,10 @@ export default function Add(props) {
           onChange={handleChange}
         />
         <h3>Add Ingredients:</h3>
-        <label htmlFor="amount">Amount: </label>
+        <label htmlFor="ingredients">Ingredients: </label>
         <br />
-        <input
-          type="number"
-          name="amount"
-          value={ingredientInput.amount}
-          placeholder="amount"
-          onChange={handleIngredientChange}
-        />
-        <br />
-        <label htmlFor="measurement">Measurement: </label>
-        <br />
-        <input
-          type="text"
-          name="measurement"
-          value={ingredientInput.measurement}
-          placeholder="cups, oz etc."
-          onChange={handleIngredientChange}
-        />
-        <br />
-        <label htmlFor="name">Ingredient name: </label>
-        <br />
-        <input
-          type="text"
-          name="name"
-          value={ingredientInput.name}
-          placeholder="ingredient"
-          onChange={handleIngredientChange}
-        />
-        <br />
-        <button onClick={handleAddIngredient}>Add Ingredient</button>
+        {ingredientInputs}
+        <button onClick={handleAddIngredient}>+</button>
         <br />
         <h3>Add Instructions:</h3>
         <label htmlFor="instructions">Instructions: </label>
@@ -141,8 +116,6 @@ export default function Add(props) {
         <br />
         <input type="submit" value="Add Recipe" />
       </form>
-      <h3>Ingredients:</h3>
-      <ul>{ingredients}</ul>
     </div>
   );
 }
