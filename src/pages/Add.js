@@ -27,11 +27,23 @@ export default function Add(props) {
 
   const handleAddIngredient = (evt) => {
     evt.preventDefault();
-    const oldArray = recipeData.ingredients;
-    const newArray = update(oldArray, { $push: [""] });
+    let ingredients = recipeData.ingredients;
+    ingredients.push("");
     setRecipeData({
       ...recipeData,
-      ingredients: newArray,
+      ingredients: ingredients,
+    });
+  };
+
+  const handleRemove = (evt) => {
+    evt.preventDefault();
+    const ingredients = recipeData.ingredients;
+    const i = evt.target.name;
+    console.log(i);
+    const newIngredients = update(ingredients, { $splice: [[i, 1]] });
+    setRecipeData({
+      ...recipeData,
+      ingredients: newIngredients,
     });
   };
 
@@ -56,6 +68,9 @@ export default function Add(props) {
           placeholder="ingredient"
           onChange={handleIngredientChange}
         />
+        <button name={idx} onClick={handleRemove}>
+          -
+        </button>
       </div>
     );
   });

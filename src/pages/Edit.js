@@ -1,9 +1,5 @@
 import { useState } from "react";
 import update from "immutability-helper";
-import {
-  capitalizeFirstLtr,
-  getIngredientList,
-} from "../services/helperFunctions";
 
 export default function Edit(props) {
   const id = props.match.params.id;
