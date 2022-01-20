@@ -22,15 +22,8 @@ export default function Add(props) {
 
   const [ingredientInput, setIngredientInput] = useState(blankIngredient);
 
-  // const [instructionsInput, setInstructionsInput] = useState("");
-
   // array of ingredients to add to DOM
   const ingredients = getIngredientList(recipeData.ingredients);
-
-  // array of instruction sto add to DOM
-  // const instructions = recipeData.instructions.map((instruction, idx) => (
-  //   <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
-  // ));
 
   // controls input fields
   const handleChange = (evt) => {
@@ -48,11 +41,6 @@ export default function Add(props) {
     });
   };
 
-  // controls instruction fields
-  // const handleInstructionsChange = (evt) => {
-  //   setInstructionsInput(evt.target.value);
-  // };
-
   // adds ingredient to recipeData state
   const handleAddIngredient = (evt) => {
     evt.preventDefault();
@@ -63,16 +51,6 @@ export default function Add(props) {
     setIngredientInput(blankIngredient);
   };
 
-  // adds instruction to recipeData state
-  // const handleAddInstruction = (evt) => {
-  //   evt.preventDefault();
-  //   setRecipeData({
-  //     ...recipeData,
-  //     instructions: [...recipeData.instructions, instructionsInput],
-  //   });
-  //   setInstructionsInput("");
-  // };
-
   // adds new recipe to user's account and redirects to home page
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -81,12 +59,24 @@ export default function Add(props) {
   };
 
   return (
-    <div className="add">
-      <form
-        style={{ textAlign: "center", marginTop: "4rem" }}
-        onSubmit={handleSubmit}
-      >
+    <div className="add" style={{ margin: "1rem" }}>
+      {recipeData.image && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            style={{
+              textAlign: "center",
+              width: "35%",
+              height: "auto",
+              margin: "0 auto",
+            }}
+            src={recipeData.image}
+            alt={recipeData.name}
+          />
+        </div>
+      )}
+      <form style={{ marginTop: "4rem" }} onSubmit={handleSubmit}>
         <label htmlFor="name">Recipe Name: </label>
+        <br />
         <input
           type="text"
           name="name"
@@ -96,6 +86,7 @@ export default function Add(props) {
         />
         <br />
         <label htmlFor="image">Image URL: </label>
+        <br />
         <input
           type="text"
           name="image"
@@ -105,6 +96,7 @@ export default function Add(props) {
         />
         <h3>Add Ingredients:</h3>
         <label htmlFor="amount">Amount: </label>
+        <br />
         <input
           type="number"
           name="amount"
@@ -114,6 +106,7 @@ export default function Add(props) {
         />
         <br />
         <label htmlFor="measurement">Measurement: </label>
+        <br />
         <input
           type="text"
           name="measurement"
@@ -123,6 +116,7 @@ export default function Add(props) {
         />
         <br />
         <label htmlFor="name">Ingredient name: </label>
+        <br />
         <input
           type="text"
           name="name"
@@ -134,17 +128,16 @@ export default function Add(props) {
         <button onClick={handleAddIngredient}>Add Ingredient</button>
         <br />
         <h3>Add Instructions:</h3>
-        <label htmlFor="instructions">Input Instructions: </label>
+        <label htmlFor="instructions">Instructions: </label>
+        <br />
         <textarea
           name="instructions"
-          // value={instructionsInput}
           value={recipeData.instructions}
           cols="60"
           rows="8"
           placeholder="instructions"
           onChange={handleChange}
         ></textarea>
-        {/* <button onClick={handleAddInstruction}>Add Instruction</button> */}
         <br />
         <input type="submit" value="Add Recipe" />
       </form>

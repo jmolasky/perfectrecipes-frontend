@@ -17,7 +17,10 @@ export default function Show(props) {
   };
 
   // make this a component?
-  const ingredientList = getIngredientList(recipe.ingredients);
+  // const ingredientList = getIngredientList(recipe.ingredients);
+  const ingredientList = recipe.ingredients.map((ingredient, idx) => (
+    <li key={idx}>{capitalizeFirstLtr(ingredient)}</li>
+  ));
 
   // const instructions = recipe.instructions.map((instruction, idx) => (
   //   <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
