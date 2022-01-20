@@ -25,15 +25,40 @@ export default function Edit(props) {
     });
   };
 
+  const handleAddIngredient = (evt) => {
+    evt.preventDefault();
+    let ingredients = recipeToEdit.ingredients;
+    ingredients.push("");
+    setRecipeToEdit({
+      ...recipeToEdit,
+      ingredients: ingredients,
+    });
+  };
+  const handleRemove = (evt) => {
+    evt.preventDefault();
+    const ingredients = recipeToEdit.ingredients;
+    const i = evt.target.name;
+    console.log(i);
+    const newIngredients = update(ingredients, { $splice: [[i, 1]] });
+    setRecipeToEdit({
+      ...recipeToEdit,
+      ingredients: newIngredients,
+    });
+  };
+
   const ingredientsArray = recipeToEdit.ingredients.map((ingredient, idx) => {
     return (
-      <input
-        type="text"
-        key={idx}
-        name={idx}
-        value={ingredient}
-        onChange={handleIngredientChange}
-      />
+      <div key={idx}>
+        <input
+          type="text"
+          name={idx}
+          value={ingredient}
+          onChange={handleIngredientChange}
+        />
+        <button name={idx} onClick={handleRemove}>
+          -
+        </button>
+      </div>
     );
   });
 
@@ -86,13 +111,8 @@ export default function Edit(props) {
         <br />
         <label htmlFor="ingredients">Ingredients: </label>
         <br />
-        {/* <input
-          type="text"
-          name="ingredients"
-          value={recipeToEdit.ingredients}
-          onChange={handleChange}
-        /> */}
         {ingredientsArray}
+        <button onClick={handleAddIngredient}>+</button>
         <br />
         <label htmlFor="instructions">Instructions: </label>
         <br />
