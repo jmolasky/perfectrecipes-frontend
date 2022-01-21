@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
 import Add from "../pages/Add";
 import Edit from "../pages/Edit";
+import Login from "../pages/Login";
 
 export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
@@ -52,9 +53,17 @@ export default function Main(props) {
         <Route
           exact
           path="/"
-          render={(rp) => (
-            <Index {...rp} recipes={recipes} getRecipes={getRecipes} />
-          )}
+          render={(rp) =>
+            props.user ? (
+              <Index {...rp} recipes={recipes} getRecipes={getRecipes} />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/login"
+          render={(rp) => (props.user ? <Redirect to="/" /> : <Login />)}
         />
         <Route
           path="/add"
