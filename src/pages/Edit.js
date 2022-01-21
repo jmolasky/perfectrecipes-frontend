@@ -1,5 +1,7 @@
 import { useState } from "react";
-import update from "immutability-helper";
+import IngredientInputs from "../components/IngredientInputs";
+import { handleAddIngredient } from "../services/helperFunctions";
+import ImagePreview from "../components/ImagePreview";
 
 export default function Edit(props) {
   const id = props.match.params.id;
@@ -14,54 +16,6 @@ export default function Edit(props) {
     });
   };
 
-  const handleIngredientChange = (evt) => {
-    const oldArray = recipeToEdit.ingredients;
-    const i = evt.target.name;
-    const newValue = evt.target.value;
-    const newArray = update(oldArray, { [i]: { $set: newValue } });
-    setRecipeToEdit({
-      ...recipeToEdit,
-      ingredients: newArray,
-    });
-  };
-
-  const handleAddIngredient = (evt) => {
-    evt.preventDefault();
-    let ingredients = recipeToEdit.ingredients;
-    ingredients.push("");
-    setRecipeToEdit({
-      ...recipeToEdit,
-      ingredients: ingredients,
-    });
-  };
-  const handleRemove = (evt) => {
-    evt.preventDefault();
-    const ingredients = recipeToEdit.ingredients;
-    const i = evt.target.name;
-    console.log(i);
-    const newIngredients = update(ingredients, { $splice: [[i, 1]] });
-    setRecipeToEdit({
-      ...recipeToEdit,
-      ingredients: newIngredients,
-    });
-  };
-
-  const ingredientsArray = recipeToEdit.ingredients.map((ingredient, idx) => {
-    return (
-      <div key={idx}>
-        <input
-          type="text"
-          name={idx}
-          value={ingredient}
-          onChange={handleIngredientChange}
-        />
-        <button name={idx} onClick={handleRemove}>
-          -
-        </button>
-      </div>
-    );
-  });
-
   const handleCancel = (evt) => {
     evt.preventDefault();
     props.history.push(`/${id}`);
@@ -75,20 +29,7 @@ export default function Edit(props) {
 
   return (
     <div className="edit" style={{ margin: "1rem" }}>
-      {recipeToEdit.image && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            style={{
-              textAlign: "center",
-              width: "35%",
-              height: "auto",
-              margin: "0 auto",
-            }}
-            src={recipeToEdit.image}
-            alt={recipeToEdit.name}
-          />
-        </div>
-      )}
+      {recipeToEdit.image && <ImagePreview recipe={recipeToEdit} />}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Recipe Name: </label>
         <br />
@@ -111,16 +52,26 @@ export default function Edit(props) {
         <br />
         <label htmlFor="ingredients">Ingredients: </label>
         <br />
-        {ingredientsArray}
-        <button onClick={handleAddIngredient}>+</button>
+        <IngredientInputs
+          recipe={recipeToEdit}
+          setterFunction={setRecipeToEdit}
+        />
+        <button
+          onClick={(e) => {
+            handleAddIngredient(e, recipeToEdit, setRecipeToEdit);
+          }}
+        >
+          +
+        </button>
         <br />
         <label htmlFor="instructions">Instructions: </label>
         <br />
         <textarea
           name="instructions"
           id=""
-          cols="50"
+          cols="60"
           rows="8"
+          placeholder="instructions"
           value={recipeToEdit.instructions}
           onChange={handleChange}
         ></textarea>

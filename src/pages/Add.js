@@ -1,5 +1,7 @@
 import { useState } from "react";
-import update from "immutability-helper";
+import IngredientInputs from "../components/IngredientInputs";
+import { handleAddIngredient } from "../services/helperFunctions";
+import ImagePreview from "../components/ImagePreview";
 
 export default function Add(props) {
   // creates object in state that will be sent to server to be added to database
@@ -25,72 +27,9 @@ export default function Add(props) {
     props.history.push("/");
   };
 
-  const handleAddIngredient = (evt) => {
-    evt.preventDefault();
-    let ingredients = recipeData.ingredients;
-    ingredients.push("");
-    setRecipeData({
-      ...recipeData,
-      ingredients: ingredients,
-    });
-  };
-
-  const handleRemove = (evt) => {
-    evt.preventDefault();
-    const ingredients = recipeData.ingredients;
-    const i = evt.target.name;
-    console.log(i);
-    const newIngredients = update(ingredients, { $splice: [[i, 1]] });
-    setRecipeData({
-      ...recipeData,
-      ingredients: newIngredients,
-    });
-  };
-
-  const handleIngredientChange = (evt) => {
-    const oldArray = recipeData.ingredients;
-    const i = evt.target.name;
-    const newValue = evt.target.value;
-    const newArray = update(oldArray, { [i]: { $set: newValue } });
-    setRecipeData({
-      ...recipeData,
-      ingredients: newArray,
-    });
-  };
-
-  const ingredientInputs = recipeData.ingredients.map((ingredient, idx) => {
-    return (
-      <div key={idx}>
-        <input
-          type="text"
-          name={idx}
-          value={ingredient}
-          placeholder="ingredient"
-          onChange={handleIngredientChange}
-        />
-        <button name={idx} onClick={handleRemove}>
-          -
-        </button>
-      </div>
-    );
-  });
-
   return (
     <div className="add" style={{ margin: "1rem" }}>
-      {recipeData.image && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
-            style={{
-              textAlign: "center",
-              width: "35%",
-              height: "auto",
-              margin: "0 auto",
-            }}
-            src={recipeData.image}
-            alt={recipeData.name}
-          />
-        </div>
-      )}
+      {recipeData.image && <ImagePreview recipe={recipeData} />}
       <form style={{ marginTop: "4rem" }} onSubmit={handleSubmit}>
         <label htmlFor="name">Recipe Name: </label>
         <br />
@@ -114,8 +53,14 @@ export default function Add(props) {
         <h3>Add Ingredients:</h3>
         <label htmlFor="ingredients">Ingredients: </label>
         <br />
-        {ingredientInputs}
-        <button onClick={handleAddIngredient}>+</button>
+        <IngredientInputs recipe={recipeData} setterFunction={setRecipeData} />
+        <button
+          onClick={(e) => {
+            handleAddIngredient(e, recipeData, setRecipeData);
+          }}
+        >
+          +
+        </button>
         <br />
         <h3>Add Instructions:</h3>
         <label htmlFor="instructions">Instructions: </label>

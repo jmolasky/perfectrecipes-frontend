@@ -1,7 +1,4 @@
-import {
-  capitalizeFirstLtr,
-  getIngredientList,
-} from "../services/helperFunctions";
+import { capitalizeFirstLtr } from "../services/helperFunctions";
 
 export default function Show(props) {
   const id = props.match.params.id;
@@ -16,15 +13,9 @@ export default function Show(props) {
     props.history.push(`/${id}/edit`);
   };
 
-  // make this a component?
-  // const ingredientList = getIngredientList(recipe.ingredients);
   const ingredientList = recipe.ingredients.map((ingredient, idx) => (
     <li key={idx}>{capitalizeFirstLtr(ingredient)}</li>
   ));
-
-  // const instructions = recipe.instructions.map((instruction, idx) => (
-  //   <li key={idx}>{capitalizeFirstLtr(instruction)}</li>
-  // ));
 
   return (
     <div style={{ margin: "1rem" }}>
@@ -49,7 +40,6 @@ export default function Show(props) {
       </div>
       <div className="instructions">
         <h3>Instructions</h3>
-        {/* <ol>{instructions}</ol> */}
         <p style={{ whiteSpace: "pre" }}>{recipe.instructions}</p>
       </div>
       <button id="delete" onClick={handleDelete}>
