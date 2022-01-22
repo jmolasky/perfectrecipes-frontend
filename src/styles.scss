@@ -69,6 +69,7 @@ nav {
   .recipename-div {
     background-color: #616161a8;
     color: #d8d8d8;
+    font-size: 1.5rem;
   }
 }
 .show-img-container {
@@ -108,6 +109,9 @@ footer {
 @media only screen and (min-width: 426px) {
   .recipe {
     @include card-size;
+    .recipename-div {
+      font-size: 1rem;
+    }
   }
   .show-img {
     @include show-img-size;

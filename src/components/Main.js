@@ -5,6 +5,7 @@ import Show from "../pages/Show";
 import Add from "../pages/Add";
 import Edit from "../pages/Edit";
 import Login from "../pages/Login";
+import Search from "../pages/Search";
 
 export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
@@ -103,7 +104,10 @@ export default function Main(props) {
               <Redirect to="/login" />
             )
           }
-        ></Route>
+        />
+        <Route path="/search">
+          {props.user ? <Search /> : <Redirect to="/login" />}
+        </Route>
         <Route
           path="/:id/edit"
           render={(rp) =>

@@ -14,12 +14,18 @@ export default function Header(props) {
             <Link to="/add">
               <div>Add Recipe</div>
             </Link>
-            <button onClick={logout}>Log Out</button>
+            <Link to="/search">
+              <div>Search for a Recipe</div>
+            </Link>
+            {props.user.displayName && (
+              <p>Welcome, {props.user.displayName.split(" ")[0]}!</p>
+            )}
             <img
               className="google-user-image"
               src={props.user.photoURL}
               alt={props.user.displayName}
             />
+            <button onClick={logout}>Log Out</button>
           </>
         )}
       </nav>
