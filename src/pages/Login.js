@@ -47,7 +47,9 @@ export default function Login(props) {
       }}
       className="login"
     >
-      <form style={{ display: "flex", flexDirection: "column", width: "50%" }}>
+      <form
+        style={{ display: "flex", flexDirection: "column", minWidth: "15rem" }}
+      >
         <h1 style={{ textAlign: "center" }}>Sign In</h1>
         <label htmlFor="email">Email</label>
         <input
@@ -71,17 +73,31 @@ export default function Login(props) {
         >
           Sign In
         </button>
-        <button
-          disabled={
-            loginCredentials.email && loginCredentials.password ? false : true
-          }
-          onClick={signup}
+        <h6
+          style={{
+            textAlign: "center",
+            padding: "none",
+            backgroundColor: "none",
+          }}
         >
-          Sign Up
-        </button>
+          Not yet registered?{" "}
+          <span>
+            <button
+              className="signup-btn"
+              style={{ border: "none", background: "none", padding: "0" }}
+              disabled={
+                loginCredentials.email && loginCredentials.password
+                  ? false
+                  : true
+              }
+              onClick={signup}
+            >
+              Sign up
+            </button>
+          </span>
+        </h6>
       </form>
-      <br />
-      <button onClick={loginWithGoogle}>Log in with Google</button>
+      <button onClick={loginWithGoogle}>Sign in with Google</button>
     </div>
   );
 }

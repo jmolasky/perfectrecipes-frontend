@@ -6,6 +6,19 @@
   flex-grow: 1;
 }
 
+$nav-height: 3.125rem;
+
+@mixin mobile-card-size {
+  width: 100%;
+  padding-top: 66.66%;
+}
+
+@mixin card-size {
+  width: 12rem;
+  height: 8rem;
+  padding-top: 0;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -16,19 +29,53 @@ body {
 
 nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+  height: $nav-height;
+  padding: 0 1.5rem 0 1.5rem;
 
   a {
+    font-size: 1rem;
     text-decoration: none;
   }
+
+  img {
+    border-radius: 50%;
+    height: $nav-height;
+    width: $nav-height;
+  }
+
+  button {
+    font-size: 1rem;
+    border: none;
+    padding: 0;
+    background: none;
+  }
+}
+
+#recipes-container {
+  padding: 1rem;
+}
+
+.recipe {
+  @include mobile-card-size;
 }
 
 .recipe:hover {
   cursor: pointer;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .recipename-div {
   background-color: #616161a8;
+}
+
+.signup-btn:hover {
+  text-decoration: underline;
 }
 
 footer {
@@ -38,4 +85,10 @@ footer {
   color: rgb(94, 91, 91);
   position: sticky;
   margin-bottom: 0;
+}
+
+@media only screen and (min-width: 426px) {
+  .recipe {
+    @include card-size;
+  }
 }

@@ -13,8 +13,8 @@ export default function Index(props) {
       onClick={() => handleClick(recipe)}
       title={recipe.name}
       style={{
-        width: "10rem",
-        height: "8rem",
+        // width: "10rem",
+        // height: "8rem",
         textAlign: "center",
         margin: ".75rem",
         position: "relative",
@@ -23,11 +23,6 @@ export default function Index(props) {
         backgroundPosition: "center",
       }}
     >
-      {/* <img
-        src={recipe.image}
-        alt={recipe.name}
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      /> */}
       <div
         className="recipename-div"
         style={{
@@ -38,14 +33,7 @@ export default function Index(props) {
           textAlign: "center",
         }}
       >
-        {/* <h3
-          style={{
-            margin: ".25rem",
-            fontSize: ".75rem",
-          }}
-        > */}
         {recipe.name}
-        {/* </h3> */}
       </div>
     </div>
   ));
