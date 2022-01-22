@@ -3,6 +3,7 @@ import { capitalizeFirstLtr } from "../services/helperFunctions";
 export default function Show(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
+  const instructionsArray = recipe.instructions.split("\n");
 
   const handleDelete = () => {
     props.deleteRecipes(id);
@@ -17,30 +18,35 @@ export default function Show(props) {
     <li key={idx}>{capitalizeFirstLtr(ingredient)}</li>
   ));
 
+  const instructions = instructionsArray.map((instruction, idx) => (
+    <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+      {instruction}
+    </p>
+  ));
+
   return (
     <div style={{ margin: "1rem" }}>
       <h1 style={{ textAlign: "center" }}>{recipe.name}</h1>
       {recipe.image && (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img
+        <div className="show-img-container">
+          <div
+            className="show-img"
             style={{
-              textAlign: "center",
-              width: "35%",
-              height: "auto",
-              margin: "0 auto",
+              position: "relative",
+              backgroundImage: `url(${recipe.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
-            src={recipe.image}
-            alt={recipe.name}
-          />
+          ></div>
         </div>
       )}
       <div className="ingredients">
         <h3>Ingredients</h3>
         <ul>{ingredientList}</ul>
       </div>
-      <div className="instructions">
+      <div style={{ width: "100%" }} className="instructions">
         <h3>Instructions</h3>
-        <p style={{ whiteSpace: "pre" }}>{recipe.instructions}</p>
+        {instructions}
       </div>
       <button id="delete" onClick={handleDelete}>
         Delete Recipe

@@ -11,7 +11,7 @@ export default function ImagePreview(props) {
         }}
         style={{
           textAlign: "center",
-          width: "35%",
+          width: "75%",
           height: "auto",
           margin: "0 auto",
         }}

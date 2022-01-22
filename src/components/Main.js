@@ -80,6 +80,10 @@ export default function Main(props) {
     <main>
       <Switch>
         <Route
+          path="/login"
+          render={(rp) => (props.user ? <Redirect to="/" /> : <Login />)}
+        />
+        <Route
           exact
           path="/"
           render={(rp) =>
@@ -91,36 +95,44 @@ export default function Main(props) {
           }
         />
         <Route
-          path="/login"
-          render={(rp) => (props.user ? <Redirect to="/" /> : <Login />)}
-        />
-        <Route
           path="/add"
-          render={(rp) => (
-            <Add {...rp} user={props.user} createRecipes={createRecipes} />
-          )}
+          render={(rp) =>
+            props.user ? (
+              <Add {...rp} user={props.user} createRecipes={createRecipes} />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         ></Route>
         <Route
           path="/:id/edit"
-          render={(rp) => (
-            <Edit
-              {...rp}
-              recipes={recipes}
-              user={props.user}
-              updateRecipes={updateRecipes}
-            />
-          )}
+          render={(rp) =>
+            props.user ? (
+              <Edit
+                {...rp}
+                recipes={recipes}
+                user={props.user}
+                updateRecipes={updateRecipes}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
         <Route
           path="/:id"
-          render={(rp) => (
-            <Show
-              {...rp}
-              recipes={recipes}
-              user={props.user}
-              deleteRecipes={deleteRecipes}
-            />
-          )}
+          render={(rp) =>
+            props.user ? (
+              <Show
+                {...rp}
+                recipes={recipes}
+                user={props.user}
+                deleteRecipes={deleteRecipes}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
         />
       </Switch>
     </main>

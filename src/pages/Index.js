@@ -13,8 +13,6 @@ export default function Index(props) {
       onClick={() => handleClick(recipe)}
       title={recipe.name}
       style={{
-        // width: "10rem",
-        // height: "8rem",
         textAlign: "center",
         margin: ".75rem",
         position: "relative",
@@ -47,7 +45,6 @@ export default function Index(props) {
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "center",
-          border: "1px solid black",
         }}
       >
         {recipes}

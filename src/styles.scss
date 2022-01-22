@@ -19,6 +19,12 @@ $nav-height: 3.125rem;
   padding-top: 0;
 }
 
+@mixin show-img-size {
+  width: 18rem;
+  height: 12rem;
+  padding-top: 0;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -60,6 +66,22 @@ nav {
 
 .recipe {
   @include mobile-card-size;
+  .recipename-div {
+    background-color: #616161a8;
+    color: #d8d8d8;
+  }
+}
+.show-img-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.show-img {
+  @include mobile-card-size;
+  img {
+    object-fit: cover;
+  }
 }
 
 .recipe:hover {
@@ -68,10 +90,6 @@ nav {
 
 button:hover {
   cursor: pointer;
-}
-
-.recipename-div {
-  background-color: #616161a8;
 }
 
 .signup-btn:hover {
@@ -90,5 +108,8 @@ footer {
 @media only screen and (min-width: 426px) {
   .recipe {
     @include card-size;
+  }
+  .show-img {
+    @include show-img-size;
   }
 }
