@@ -19,7 +19,7 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-function login() {
+function loginWithGoogle() {
   return auth.signInWithPopup(provider);
 }
 
@@ -27,4 +27,4 @@ function logout() {
   return auth.signOut();
 }
 
-export { auth, login, logout };
+export { auth, loginWithGoogle, logout };

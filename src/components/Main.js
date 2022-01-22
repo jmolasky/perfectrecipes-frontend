@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
@@ -8,19 +8,31 @@ import Login from "../pages/Login";
 
 export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
+  const getRecipesRef = useRef();
+
   const URL = "https://perfectrecipes-backend.herokuapp.com/";
 
   const getRecipes = async () => {
-    const response = await fetch(URL);
+    if (!props.user) return;
+    const token = await props.user.getIdToken();
+    const response = await fetch(URL, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     const data = await response.json();
     setRecipes(data);
   };
 
   const createRecipes = async (recipe) => {
+    if (!props.user) return;
+    const token = await props.user.getIdToken();
     await fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(recipe),
     });
@@ -28,24 +40,41 @@ export default function Main(props) {
   };
 
   const deleteRecipes = async (id) => {
+    if (!props.user) return;
+    const token = await props.user.getIdToken();
     await fetch(URL + id, {
       method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
     });
     getRecipes();
   };
 
   const updateRecipes = async (recipe, id) => {
+    if (!props.user) return;
+    const token = await props.user.getIdToken();
     await fetch(URL + id, {
       method: "PUT",
       headers: {
         "Content-Type": "Application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(recipe),
     });
     getRecipes();
   };
 
-  useEffect(() => getRecipes(), []);
+  useEffect(() => {
+    getRecipesRef.current = getRecipes;
+  });
+
+  // useEffect(() => getRecipes(), []);
+  useEffect(() => {
+    if (props.user) {
+      getRecipesRef.current();
+    }
+  }, [props.user]);
 
   return (
     <main>
@@ -55,7 +84,7 @@ export default function Main(props) {
           path="/"
           render={(rp) =>
             props.user ? (
-              <Index {...rp} recipes={recipes} getRecipes={getRecipes} />
+              <Index {...rp} recipes={recipes} />
             ) : (
               <Redirect to="/login" />
             )
@@ -67,18 +96,30 @@ export default function Main(props) {
         />
         <Route
           path="/add"
-          render={(rp) => <Add {...rp} createRecipes={createRecipes} />}
+          render={(rp) => (
+            <Add {...rp} user={props.user} createRecipes={createRecipes} />
+          )}
         ></Route>
         <Route
           path="/:id/edit"
           render={(rp) => (
-            <Edit {...rp} recipes={recipes} updateRecipes={updateRecipes} />
+            <Edit
+              {...rp}
+              recipes={recipes}
+              user={props.user}
+              updateRecipes={updateRecipes}
+            />
           )}
         />
         <Route
           path="/:id"
           render={(rp) => (
-            <Show {...rp} recipes={recipes} deleteRecipes={deleteRecipes} />
+            <Show
+              {...rp}
+              recipes={recipes}
+              user={props.user}
+              deleteRecipes={deleteRecipes}
+            />
           )}
         />
       </Switch>
