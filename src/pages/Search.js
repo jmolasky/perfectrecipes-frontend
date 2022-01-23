@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard";
 
 export default function Search(props) {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -7,19 +7,28 @@ export default function Search(props) {
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [noResults, setNoResults] = useState("");
 
-  const recipeResults = results.map((result, idx) => {
+  const handleClick = (id) => {
+    props.history.push(`/search/${id}`);
+  };
+
+  const recipeResults = results.map((result) => {
     return (
-      <div style={{ width: "100%" }} key={result.id}>
-        <img src={result.image} alt="" />
-        <Link to={`/search/${result.id}`}>{result.title}</Link>
-      </div>
+      <RecipeCard
+        key={result.id}
+        handleClick={handleClick}
+        recipe={result}
+        recipeName={result.title}
+      />
     );
   });
+
   const handleSearch = async (evt) => {
     evt.preventDefault();
     const response = await fetch(`${url}?apiKey=${API_KEY}&query=${query}`);
     const data = await response.json();
+    data.results.length === 0 ? setNoResults("No Results") : setNoResults("");
     setResults(data.results);
   };
 
@@ -34,7 +43,22 @@ export default function Search(props) {
         <input type="text" name="query" value={query} onChange={handleChange} />
         <button onClick={handleSearch}>Search</button>
       </form>
-      <div>{recipeResults}</div>
+      {noResults && (
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          {noResults}
+        </div>
+      )}
+      <div
+        id="recipes-container"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {recipeResults}
+      </div>
     </div>
   );
 }
