@@ -3,7 +3,7 @@ import { capitalizeFirstLtr } from "../services/helperFunctions";
 export default function Show(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
-  const instructionsArray = recipe.instructions.split("\n");
+  // const instructionsArray = recipe.instructions.split("\n");
 
   const handleDelete = () => {
     props.deleteRecipes(id);
@@ -18,11 +18,25 @@ export default function Show(props) {
     <li key={idx}>{capitalizeFirstLtr(ingredient)}</li>
   ));
 
-  const instructions = instructionsArray.map((instruction, idx) => (
-    <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
-      {instruction}
-    </p>
-  ));
+  let instructions;
+  if (recipe.instructions.includes("<ol>")) {
+    const innerHtml = recipe.instructions;
+    instructions = <div dangerouslySetInnerHTML={{ __html: innerHtml }}></div>;
+  } else if (recipe.instructions.charAt(0) !== "1") {
+    const instructionsArray = recipe.instructions.split("\n");
+    instructions = instructionsArray.map((instruction, idx) => (
+      <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+        {idx + 1}. {instruction}
+      </p>
+    ));
+  } else {
+    const instructionsArray = recipe.instructions.split("\n");
+    instructions = instructionsArray.map((instruction, idx) => (
+      <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+        {instruction}
+      </p>
+    ));
+  }
 
   return (
     <div style={{ margin: "1rem" }}>
