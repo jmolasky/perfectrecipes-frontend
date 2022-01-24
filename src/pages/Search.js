@@ -9,8 +9,8 @@ export default function Search(props) {
   const [results, setResults] = useState([]);
   const [noResults, setNoResults] = useState("");
 
-  const handleClick = (id) => {
-    props.history.push(`/search/${id}`);
+  const handleClick = (recipe) => {
+    props.history.push(`/search/${recipe.id}`);
   };
 
   const recipeResults = results.map((result) => {
@@ -41,7 +41,9 @@ export default function Search(props) {
       <h1 style={{ textAlign: "center" }}>Search for a recipe</h1>
       <form style={{ textAlign: "center" }}>
         <input type="text" name="query" value={query} onChange={handleChange} />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} disabled={query ? false : true}>
+          Search
+        </button>
       </form>
       {noResults && (
         <div style={{ textAlign: "center", marginTop: "1rem" }}>

@@ -6,6 +6,7 @@ import Add from "../pages/Add";
 import Edit from "../pages/Edit";
 import Login from "../pages/Login";
 import Search from "../pages/Search";
+import RecipeDetails from "../pages/RecipeDetails";
 
 export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
@@ -70,7 +71,7 @@ export default function Main(props) {
     getRecipesRef.current = getRecipes;
   });
 
-  // useEffect(() => getRecipes(), []);
+  // is this code ok?
   useEffect(() => {
     if (props.user) {
       getRecipesRef.current();
@@ -105,9 +106,28 @@ export default function Main(props) {
             )
           }
         />
-        <Route path="/search">
-          {props.user ? <Search /> : <Redirect to="/login" />}
-        </Route>
+        <Route
+          exact
+          path="/search"
+          render={(rp) =>
+            props.user ? <Search {...rp} /> : <Redirect to="/login" />
+          }
+        />
+        <Route
+          path="/search/:id"
+          render={(rp) =>
+            props.user ? (
+              <RecipeDetails
+                {...rp}
+                user={props.user}
+                createRecipes={createRecipes}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )
+          }
+        />
+
         <Route
           path="/:id/edit"
           render={(rp) =>

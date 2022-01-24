@@ -12,6 +12,35 @@ export default function Index(props) {
       handleClick={handleClick}
       recipeName={recipe.name}
     />
+    // <div
+    //   key={recipe._id}
+    //   className="recipe"
+    //   style={{
+    //     border: "1px solid grey",
+    //     textAlign: "center",
+    //     margin: ".75rem",
+    //     position: "relative",
+    //     backgroundImage: `url(${recipe.image})`,
+    //     backgroundSize: "cover",
+    //     backgroundPosition: "center",
+    //   }}
+    //   onClick={(e) => {
+    //     handleClick(recipe);
+    //   }}
+    // >
+    //   <div
+    //     className="recipename-div"
+    //     style={{
+    //       position: "absolute",
+    //       width: "100%",
+    //       height: "30%",
+    //       bottom: "0",
+    //       textAlign: "center",
+    //     }}
+    //   >
+    //     {recipe.name}
+    //   </div>
+    // </div>
   ));
 
   const loaded = () => {

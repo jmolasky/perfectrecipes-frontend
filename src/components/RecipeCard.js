@@ -11,7 +11,9 @@ export default function RecipeCard(props) {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      onClick={() => props.handleClick(props.recipe.id)}
+      onClick={(e) => {
+        props.handleClick(props.recipe);
+      }}
     >
       <div
         className="recipename-div"
