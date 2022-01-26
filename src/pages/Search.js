@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
 
 export default function Search(props) {
@@ -12,6 +12,13 @@ export default function Search(props) {
   const handleClick = (recipe) => {
     props.history.push(`/search/${recipe.id}`);
   };
+
+  useEffect(() => {
+    const storage = JSON.parse(window.localStorage.getItem("storage"));
+    console.log(storage);
+    storage != null ? setResults(storage) : setResults([]);
+    // setResults(results);
+  }, []);
 
   const recipeResults = results.map((result) => {
     return (
@@ -29,6 +36,7 @@ export default function Search(props) {
     const response = await fetch(`${url}?apiKey=${API_KEY}&query=${query}`);
     const data = await response.json();
     data.results.length === 0 ? setNoResults("No Results") : setNoResults("");
+    window.localStorage.setItem("storage", JSON.stringify(data.results));
     setResults(data.results);
   };
 
