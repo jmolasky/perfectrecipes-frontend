@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
 import Add from "../pages/Add";
@@ -85,78 +86,44 @@ export default function Main(props) {
           path="/login"
           render={(rp) => (props.user ? <Redirect to="/" /> : <Login />)}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/"
-          render={(rp) =>
-            props.user ? (
-              <Index {...rp} recipes={recipes} />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
+          user={props.user}
+          recipes={recipes}
+          component={Index}
         />
-        <Route
+        <PrivateRoute
           path="/add"
-          render={(rp) =>
-            props.user ? (
-              <Add {...rp} user={props.user} createRecipes={createRecipes} />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
+          user={props.user}
+          createRecipes={createRecipes}
+          component={Add}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/search"
-          render={(rp) =>
-            props.user ? <Search {...rp} /> : <Redirect to="/login" />
-          }
+          user={props.user}
+          component={Search}
         />
-        <Route
+        <PrivateRoute
           path="/search/:id"
-          render={(rp) =>
-            props.user ? (
-              <RecipeDetails
-                {...rp}
-                user={props.user}
-                createRecipes={createRecipes}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
+          user={props.user}
+          createRecipes={createRecipes}
+          component={RecipeDetails}
         />
-
-        <Route
+        <PrivateRoute
           path="/:id/edit"
-          render={(rp) =>
-            props.user ? (
-              <Edit
-                {...rp}
-                recipes={recipes}
-                user={props.user}
-                updateRecipes={updateRecipes}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
+          user={props.user}
+          recipes={recipes}
+          updateRecipes={updateRecipes}
+          component={Edit}
         />
-        <Route
+        <PrivateRoute
           path="/:id"
-          render={(rp) =>
-            props.user ? (
-              <Show
-                {...rp}
-                recipes={recipes}
-                user={props.user}
-                deleteRecipes={deleteRecipes}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
+          user={props.user}
+          recipes={recipes}
+          deleteRecipes={deleteRecipes}
+          component={Show}
         />
       </Switch>
     </main>

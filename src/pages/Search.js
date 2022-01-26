@@ -15,9 +15,7 @@ export default function Search(props) {
 
   useEffect(() => {
     const storage = JSON.parse(window.localStorage.getItem("storage"));
-    console.log(storage);
     storage != null ? setResults(storage) : setResults([]);
-    // setResults(results);
   }, []);
 
   const recipeResults = results.map((result) => {
