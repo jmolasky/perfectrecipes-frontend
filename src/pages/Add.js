@@ -2,6 +2,7 @@ import { useState } from "react";
 import IngredientInputs from "../components/IngredientInputs";
 import { handleAddIngredient } from "../services/helperFunctions";
 import ImagePreview from "../components/ImagePreview";
+import InstructionsEdit from "../components/InstructionsEdit";
 
 export default function Add(props) {
   // creates object in state that will be sent to server to be added to database
@@ -66,13 +67,7 @@ export default function Add(props) {
         <br />
         <label htmlFor="instructions">Instructions: </label>
         <br />
-        <textarea
-          style={{ width: "100%", height: "20rem" }}
-          name="instructions"
-          value={recipeData.instructions}
-          placeholder="instructions"
-          onChange={handleChange}
-        ></textarea>
+        <InstructionsEdit recipe={recipeData} handleChange={handleChange} />
         <br />
         <input type="submit" value="Add Recipe" />
       </form>

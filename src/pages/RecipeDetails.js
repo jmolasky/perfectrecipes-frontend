@@ -106,7 +106,7 @@ export default function RecipeDetails(props) {
       <div style={{ margin: "1rem" }}>
         {/* <h1 style={{ textAlign: "center" }}>{recipeInfo.title}</h1>
         {recipeInfo.image && ( */}
-        <h1 style={{ textAlign: "center" }}>{recipeData.title}</h1>
+        <h1 style={{ textAlign: "center" }}>{recipeData.name}</h1>
         {recipeData.image && (
           <div className="show-img-container">
             <div

@@ -2,6 +2,7 @@ import { useState } from "react";
 import IngredientInputs from "../components/IngredientInputs";
 import { handleAddIngredient } from "../services/helperFunctions";
 import ImagePreview from "../components/ImagePreview";
+import InstructionsEdit from "../components/InstructionsEdit";
 
 export default function Edit(props) {
   const id = props.match.params.id;
@@ -66,15 +67,7 @@ export default function Edit(props) {
         <br />
         <label htmlFor="instructions">Instructions: </label>
         <br />
-        <textarea
-          name="instructions"
-          id=""
-          cols="60"
-          rows="8"
-          placeholder="instructions"
-          value={recipeToEdit.instructions}
-          onChange={handleChange}
-        ></textarea>
+        <InstructionsEdit recipe={recipeToEdit} handleChange={handleChange} />
         <br />
         <input type="submit" value="Submit Changes" />
         <button onClick={handleCancel}>Cancel</button>

@@ -1,7 +1,8 @@
 export default function ImagePreview(props) {
   const handleError = (evt) => {
     evt.target.src =
-      "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
+      // "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
+      "https://spoonacular.com/recipeImages/157093-556x370.jpg";
   };
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
