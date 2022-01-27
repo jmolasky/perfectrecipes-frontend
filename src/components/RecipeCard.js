@@ -4,8 +4,8 @@ export default function RecipeCard(props) {
       className="recipe"
       style={{
         border: "1px solid grey",
-        textAlign: "center",
         margin: ".75rem",
+        textAlign: "center",
         position: "relative",
         backgroundImage: `url(${props.recipe.image})`,
         backgroundSize: "cover",

@@ -33,32 +33,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: lightgray;
-  height: $nav-height;
-  padding: 0 1.5rem 0 1.5rem;
+// nav {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   background-color: lightgray;
+//   height: $nav-height;
+//   padding: 0 1.5rem 0 1.5rem;
 
-  a {
-    font-size: 1rem;
-    text-decoration: none;
-  }
+//   a {
+//     font-size: 1rem;
+//     text-decoration: none;
+//   }
 
-  img {
-    border-radius: 50%;
-    height: $nav-height;
-    width: $nav-height;
-  }
+//   img {
+//     border-radius: 50%;
+//     height: $nav-height;
+//     width: $nav-height;
+//   }
 
-  button {
-    font-size: 1rem;
-    border: none;
-    padding: 0;
-    background: none;
-  }
-}
+//   button {
+//     font-size: 1rem;
+//     border: none;
+//     padding: 0;
+//     background: none;
+//   }
+// }
 
 #recipes-container {
   padding: 1rem;
@@ -67,11 +67,15 @@ nav {
 .recipe {
   @include mobile-card-size;
   .recipename-div {
-    background-color: #616161a8;
+    background-color: #575757c9;
     color: #d8d8d8;
     font-size: 1.5rem;
   }
 }
+
+// .recipe:hover {
+//   border: 1px solid rgb(137, 247, 245);
+// }
 .show-img-container {
   display: flex;
   justify-content: center;

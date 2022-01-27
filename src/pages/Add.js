@@ -24,7 +24,13 @@ export default function Add(props) {
   // adds new recipe to user's account and redirects to home page
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    props.createRecipes(recipeData);
+    let recipe = recipeData;
+    recipe.image
+      ? (recipe.image = recipeData.image)
+      : (recipe.image =
+          "https://spoonacular.com/recipeImages/157093-556x370.jpg");
+    // props.createRecipes(recipeData);
+    props.createRecipes(recipe);
     props.history.push("/");
   };
 
