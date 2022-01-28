@@ -7,11 +7,7 @@ export default function BootstrapCard(props) {
       <Card
         className="h-100"
         style={{
-          // width: "100%",
-          // height: "100%",
-          // paddingTop: "66.66%",
           border: "2px solid grey",
-          // margin: ".75rem",
         }}
         onClick={(e) => {
           props.handleClick(props.recipe);
@@ -39,8 +35,6 @@ export default function BootstrapCard(props) {
               height: "25%",
               backgroundColor: "#575757c9",
               color: "#d8d8d8",
-              // paddingTop: "1rem",
-              // paddingBottom: "1rem",
               paddingLeft: ".5rem",
               paddingRight: ".5rem",
               margin: "0",

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import RecipeCard from "../components/RecipeCard";
+import BootstrapCard from "../components/BootstrapCard";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 
 export default function Search(props) {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -18,16 +20,14 @@ export default function Search(props) {
     storage != null ? setResults(storage) : setResults([]);
   }, []);
 
-  const recipeResults = results.map((result) => {
-    return (
-      <RecipeCard
-        key={result.id}
-        handleClick={handleClick}
-        recipe={result}
-        recipeName={result.title}
-      />
-    );
-  });
+  const recipeResults = results.map((result) => (
+    <BootstrapCard
+      key={result.id}
+      recipe={result}
+      handleClick={handleClick}
+      recipeName={result.title}
+    />
+  ));
 
   const handleSearch = async (evt) => {
     evt.preventDefault();
@@ -43,9 +43,9 @@ export default function Search(props) {
   };
 
   return (
-    <div id="search">
+    <Container>
       <h1 style={{ textAlign: "center" }}>Search for a recipe</h1>
-      <form style={{ textAlign: "center" }}>
+      <form style={{ textAlign: "center", marginBottom: "2rem" }}>
         <input type="text" name="query" value={query} onChange={handleChange} />
         <button onClick={handleSearch} disabled={query ? false : true}>
           Search
@@ -56,17 +56,7 @@ export default function Search(props) {
           {noResults}
         </div>
       )}
-      <div
-        id="recipes-container"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {recipeResults}
-      </div>
-    </div>
+      <Row style={{ justifyContent: "center" }}>{recipeResults}</Row>
+    </Container>
   );
 }
