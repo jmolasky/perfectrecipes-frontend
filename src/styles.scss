@@ -1,3 +1,8 @@
+// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
 * {
   box-sizing: border-box;
 }
@@ -110,13 +115,49 @@ footer {
   margin-bottom: 0;
 }
 
-@media only screen and (min-width: 426px) {
-  .recipe {
-    @include card-size;
-    .recipename-div {
-      font-size: 1rem;
-    }
+// //medium screen width
+// @media (min-width: 768px) {
+//   .recipe-col {
+//     height: 10rem;
+//   }
+// }
+
+.recipe-card {
+  font-size: 1.5rem;
+  @include media-breakpoint-up("xs") {
+    height: 20rem;
   }
+  @include media-breakpoint-up("sm") {
+    height: 8rem;
+    font-size: 0.75rem;
+  }
+  @include media-breakpoint-up("md") {
+    height: 8rem;
+  }
+  @include media-breakpoint-up("lg") {
+    height: 8rem;
+  }
+}
+
+// .card-title {
+//   @include media-breakpoint-down("sm") {
+//     font-size: 2rem;
+//   }
+// }
+
+// @media only screen and (max-width: 426px) {
+//   .card-title.div {
+//     font-size: 2rem;
+//   }
+// }
+
+@media only screen and (min-width: 426px) {
+  // .recipe {
+  //   @include card-size;
+  //   .recipename-div {
+  //     font-size: 1rem;
+  //   }
+  // }
   .show-img {
     @include show-img-size;
   }
