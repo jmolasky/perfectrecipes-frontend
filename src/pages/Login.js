@@ -1,5 +1,6 @@
 import { loginWithGoogle, auth } from "../services/firebase";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function Login(props) {
   const [loginCredentials, setLoginCredentials] = useState({
@@ -44,47 +45,74 @@ export default function Login(props) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        width: "100%",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        color: "white",
       }}
       className="login"
     >
       <form
-        style={{ display: "flex", flexDirection: "column", minWidth: "15rem" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "25rem",
+          width: "100%",
+          marginTop: "2rem",
+          fontSize: "1.5rem",
+        }}
       >
         <h1 style={{ textAlign: "center" }}>Sign In</h1>
         <label htmlFor="email">Email</label>
         <input
+          className="mb-2"
+          style={{ borderRadius: "4px", height: "3rem", paddingLeft: ".75rem" }}
           name="email"
           value={loginCredentials.email}
+          placeholder="email"
           type="email"
           onChange={handleChange}
         />
         <label htmlFor="password">Password</label>
         <input
+          className="mb-2"
+          style={{ borderRadius: "4px", height: "3rem", paddingLeft: ".75rem" }}
           name="password"
           value={loginCredentials.password}
+          placeholder="password"
           type="password"
           onChange={handleChange}
         />
-        <button
+        <Button
+          style={{ height: "3rem", fontSize: "1.5rem" }}
           disabled={
             loginCredentials.email && loginCredentials.password ? false : true
           }
           onClick={login}
         >
           Sign In
-        </button>
-        <h6
+        </Button>
+        <h5
           style={{
             textAlign: "center",
             padding: "none",
             backgroundColor: "none",
+            marginTop: ".75rem",
+            marginBottom: ".75rem",
           }}
         >
           Not yet registered?{" "}
           <span>
-            <button
-              className="signup-btn"
-              style={{ border: "none", background: "none", padding: "0" }}
+            <Button
+              // className="signup-btn"
+              variant="link"
+              style={{
+                // border: "none",
+                // background: "none",
+                padding: "0",
+                fontsize: "1.5rem",
+                color: "white",
+              }}
               disabled={
                 loginCredentials.email && loginCredentials.password
                   ? false
@@ -92,12 +120,19 @@ export default function Login(props) {
               }
               onClick={signup}
             >
-              Sign up
-            </button>
+              Sign Up
+            </Button>
           </span>
-        </h6>
+        </h5>
       </form>
-      <button onClick={loginWithGoogle}>Sign in with Google</button>
+      <Button
+        style={{ padding: ".75rem" }}
+        variant="outline-light"
+        onClick={loginWithGoogle}
+      >
+        Sign in with Google
+      </Button>
+      <br />
     </div>
   );
 }

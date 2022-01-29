@@ -2,13 +2,27 @@ import {
   handleIngredientChange,
   handleRemove,
 } from "../services/helperFunctions";
+import Button from "react-bootstrap/Button";
 
 export default function IngredientInputs(props) {
   const ingredientsArray = props.recipe.ingredients.map((ingredient, idx) => {
     return (
-      <div style={{ width: "100%" }} key={idx}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space evenly",
+          width: "100%",
+          marginBottom: "1rem",
+        }}
+        key={idx}
+      >
         <input
-          style={{ width: "90%" }}
+          style={{
+            width: "85%",
+            borderRadius: "4px",
+            height: "3rem",
+            paddingLeft: ".75rem",
+          }}
           type="text"
           name={idx}
           value={ingredient}
@@ -16,15 +30,31 @@ export default function IngredientInputs(props) {
             handleIngredientChange(e, props.recipe, props.setterFunction);
           }}
         />
-        <button
-          style={{ width: "10%" }}
-          name={idx}
-          onClick={(e) => {
-            handleRemove(e, props.recipe, props.setterFunction);
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "15%",
           }}
         >
-          -
-        </button>
+          <Button
+            variant="outline-danger"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              width: "2rem",
+              height: "2rem",
+              borderRadius: "50%",
+            }}
+            name={idx}
+            onClick={(e) => {
+              handleRemove(e, props.recipe, props.setterFunction);
+            }}
+          >
+            -
+          </Button>
+        </div>
       </div>
     );
   });

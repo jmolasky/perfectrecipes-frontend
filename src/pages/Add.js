@@ -3,6 +3,7 @@ import IngredientInputs from "../components/IngredientInputs";
 import { handleAddIngredient } from "../services/helperFunctions";
 import ImagePreview from "../components/ImagePreview";
 import InstructionsEdit from "../components/InstructionsEdit";
+import Button from "react-bootstrap/Button";
 
 export default function Add(props) {
   // creates object in state that will be sent to server to be added to database
@@ -35,13 +36,17 @@ export default function Add(props) {
   };
 
   return (
-    <div className="add" style={{ margin: "1rem" }}>
+    <div
+      className="add"
+      style={{ margin: "1rem", color: "white", fontSize: "1.5rem" }}
+    >
+      <h1 style={{ textAlign: "center" }}>Add a Recipe</h1>
       {recipeData.image && <ImagePreview recipe={recipeData} />}
       <form style={{ width: "100%" }} onSubmit={handleSubmit}>
         <label htmlFor="name">Recipe Name: </label>
         <br />
         <input
-          style={{ width: "100%" }}
+          style={{ width: "100%", paddingLeft: ".75rem", height: "3rem" }}
           type="text"
           name="name"
           value={recipeData.name}
@@ -52,7 +57,7 @@ export default function Add(props) {
         <label htmlFor="image">Image URL: </label>
         <br />
         <input
-          style={{ width: "100%" }}
+          style={{ width: "100%", paddingLeft: ".75rem", height: "3rem" }}
           type="text"
           name="image"
           value={recipeData.image}
@@ -63,19 +68,25 @@ export default function Add(props) {
         <label htmlFor="ingredients">Ingredients: </label>
         <br />
         <IngredientInputs recipe={recipeData} setterFunction={setRecipeData} />
-        <button
+        <Button
+          variant="success"
           onClick={(e) => {
             handleAddIngredient(e, recipeData, setRecipeData);
           }}
         >
           +
-        </button>
+        </Button>
         <br />
         <label htmlFor="instructions">Instructions: </label>
         <br />
         <InstructionsEdit recipe={recipeData} handleChange={handleChange} />
         <br />
-        <input type="submit" value="Add Recipe" />
+        <Button
+          style={{ width: "100%" }}
+          as="input"
+          type="submit"
+          value="Add Recipe"
+        />
       </form>
     </div>
   );
