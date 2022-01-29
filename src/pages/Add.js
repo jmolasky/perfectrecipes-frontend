@@ -30,7 +30,6 @@ export default function Add(props) {
       ? (recipe.image = recipeData.image)
       : (recipe.image =
           "https://spoonacular.com/recipeImages/157093-556x370.jpg");
-    // props.createRecipes(recipeData);
     props.createRecipes(recipe);
     props.history.push("/");
   };
@@ -86,6 +85,13 @@ export default function Add(props) {
           as="input"
           type="submit"
           value="Add Recipe"
+          disabled={
+            recipeData.name &&
+            recipeData.ingredients.length &&
+            recipeData.instructions
+              ? false
+              : true
+          }
         />
       </form>
     </div>

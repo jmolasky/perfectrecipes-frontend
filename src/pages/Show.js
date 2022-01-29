@@ -1,9 +1,9 @@
 import { capitalizeFirstLtr } from "../services/helperFunctions";
+import RecipeView from "../components/RecipeView";
 
 export default function Show(props) {
   const id = props.match.params.id;
   const recipe = props.recipes.find((recipe) => recipe._id === id);
-  // const instructionsArray = recipe.instructions.split("\n");
 
   const handleDelete = () => {
     props.deleteRecipes(id);
@@ -40,28 +40,11 @@ export default function Show(props) {
 
   return (
     <div style={{ margin: "1rem", color: "white" }}>
-      <h1 style={{ textAlign: "center" }}>{recipe.name}</h1>
-      {recipe.image && (
-        <div className="show-img-container">
-          <div
-            className="show-img"
-            style={{
-              position: "relative",
-              backgroundImage: `url(${recipe.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-        </div>
-      )}
-      <div className="ingredients">
-        <h3>Ingredients</h3>
-        <ul>{ingredientList}</ul>
-      </div>
-      <div style={{ width: "100%" }} className="instructions">
-        <h3>Instructions</h3>
-        {instructions}
-      </div>
+      <RecipeView
+        recipe={recipe}
+        ingredients={ingredientList}
+        instructions={instructions}
+      />
       <button id="delete" onClick={handleDelete}>
         Delete Recipe
       </button>

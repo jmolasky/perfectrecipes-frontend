@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BootstrapCard from "../components/BootstrapCard";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
 export default function Search(props) {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -44,14 +45,39 @@ export default function Search(props) {
 
   return (
     <Container>
-      <h1 style={{ textAlign: "center", color: "white" }}>
+      <h1
+        style={{
+          textAlign: "center",
+          color: "white",
+          marginTop: "2rem",
+          marginBottom: "2rem",
+        }}
+      >
         Search for a recipe
       </h1>
-      <form style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <input type="text" name="query" value={query} onChange={handleChange} />
-        <button onClick={handleSearch} disabled={query ? false : true}>
+      <form
+        style={{ textAlign: "center", marginBottom: "2rem", width: "100%" }}
+      >
+        <input
+          style={{
+            height: "3rem",
+            width: "100%",
+            marginBottom: "2rem",
+            paddingLeft: ".75rem",
+            borderRadius: "4px",
+          }}
+          type="text"
+          name="query"
+          value={query}
+          onChange={handleChange}
+        />
+        <Button
+          style={{ height: "3rem", width: "100%" }}
+          onClick={handleSearch}
+          disabled={query ? false : true}
+        >
           Search
-        </button>
+        </Button>
       </form>
       {noResults && (
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
