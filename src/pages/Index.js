@@ -20,7 +20,7 @@ export default function Index(props) {
     return (
       <Container>
         {props.user.displayName && (
-          <h2 style={{ textAlign: "center" }}>
+          <h2 style={{ textAlign: "center", color: "#b6b6b6" }}>
             Welcome, {props.user.displayName.split(" ")[0]}!
           </h2>
         )}

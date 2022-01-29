@@ -39,7 +39,7 @@ export default function Show(props) {
   }
 
   return (
-    <div style={{ margin: "1rem" }}>
+    <div style={{ margin: "1rem", color: "white" }}>
       <h1 style={{ textAlign: "center" }}>{recipe.name}</h1>
       {recipe.image && (
         <div className="show-img-container">

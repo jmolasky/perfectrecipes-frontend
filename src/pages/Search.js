@@ -44,7 +44,9 @@ export default function Search(props) {
 
   return (
     <Container>
-      <h1 style={{ textAlign: "center" }}>Search for a recipe</h1>
+      <h1 style={{ textAlign: "center", color: "white" }}>
+        Search for a recipe
+      </h1>
       <form style={{ textAlign: "center", marginBottom: "2rem" }}>
         <input type="text" name="query" value={query} onChange={handleChange} />
         <button onClick={handleSearch} disabled={query ? false : true}>

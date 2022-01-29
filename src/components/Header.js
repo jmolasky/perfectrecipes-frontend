@@ -1,39 +1,38 @@
 import { logout } from "../services/firebase";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { NavLink } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import { LinkContainer } from "react-router-bootstrap";
 
 export default function Header(props) {
   return (
     <header className="header">
-      <h1 style={{ textAlign: "center" }}>PerfectRecipes</h1>
       <Navbar
-        bg="light"
+        bg="dark"
+        variant="dark"
         expand="sm"
         sticky="top"
         style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
       >
-        <LinkContainer to="/">
-          <Navbar.Brand>Home</Navbar.Brand>
-        </LinkContainer>
+        <Navbar.Brand>PerfectRecipes</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="justify-content-end">
+            <NavLink className="nav-link" to="/" exact={true}>
+              Home
+            </NavLink>
             {props.user && (
               <>
-                <LinkContainer to="/add">
-                  <Nav.Link>Add Recipe</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/search">
-                  <Nav.Link>Search for Recipe</Nav.Link>
-                </LinkContainer>
+                <NavLink className="nav-link" to="/add">
+                  Add Recipe
+                </NavLink>
+                <NavLink className="nav-link" to="/search">
+                  Search for Recipe
+                </NavLink>
                 <Nav.Link>
                   <Image
-                    // className="google-user-image"
-                    // className="d-inline-block align-top"
                     roundedCircle
-                    // borderradius="50%"
                     width="30rem"
                     height="30rem"
                     src={props.user.photoURL}

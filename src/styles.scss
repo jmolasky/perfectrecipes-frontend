@@ -11,23 +11,15 @@
   flex-grow: 1;
 }
 
-$nav-height: 3.125rem;
-
-@mixin mobile-card-size {
-  width: 100%;
-  padding-top: 66.66%;
-}
-
-@mixin card-size {
-  width: 12rem;
-  height: 8rem;
-  padding-top: 0;
-}
-
 @mixin show-img-size {
   width: 18rem;
   height: 12rem;
   padding-top: 0;
+}
+
+@mixin mobile-card-size {
+  width: 100%;
+  padding-top: 66.66%;
 }
 
 body {
@@ -36,51 +28,11 @@ body {
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("https://i.imgur.com/48RRo8L.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-// nav {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   background-color: lightgray;
-//   height: $nav-height;
-//   padding: 0 1.5rem 0 1.5rem;
-
-//   a {
-//     font-size: 1rem;
-//     text-decoration: none;
-//   }
-
-//   img {
-//     border-radius: 50%;
-//     height: $nav-height;
-//     width: $nav-height;
-//   }
-
-//   button {
-//     font-size: 1rem;
-//     border: none;
-//     padding: 0;
-//     background: none;
-//   }
-// }
-
-#recipes-container {
-  padding: 1rem;
-}
-
-.recipe {
-  @include mobile-card-size;
-  .recipename-div {
-    background-color: #575757c9;
-    color: #d8d8d8;
-    font-size: 1.5rem;
-  }
-}
-
-// .recipe:hover {
-//   border: 1px solid rgb(137, 247, 245);
-// }
 .show-img-container {
   display: flex;
   justify-content: center;
@@ -92,10 +44,6 @@ body {
   img {
     object-fit: cover;
   }
-}
-
-.recipe:hover {
-  cursor: pointer;
 }
 
 button:hover {
@@ -110,19 +58,12 @@ footer {
   display: flex;
   font-size: 0.75rem;
   justify-content: center;
-  color: rgb(94, 91, 91);
+  color: rgb(155, 157, 158);
   position: sticky;
   margin-bottom: 0;
 }
 
-// //medium screen width
-// @media (min-width: 768px) {
-//   .recipe-col {
-//     height: 10rem;
-//   }
-// }
-
-.recipe-card {
+.recipe {
   font-size: 1.5rem;
   @include media-breakpoint-up("xs") {
     height: 20rem;
@@ -137,6 +78,17 @@ footer {
   @include media-breakpoint-up("lg") {
     height: 8rem;
   }
+}
+
+.recipe-card {
+  // border: 2px solid black;
+  // outline: #575757c9;
+  border-radius: 4px;
+}
+
+.recipe-card:hover {
+  cursor: pointer;
+  outline: 2px solid grey;
 }
 
 // .card-title {

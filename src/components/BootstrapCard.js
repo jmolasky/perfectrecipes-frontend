@@ -3,18 +3,21 @@ import Col from "react-bootstrap/Col";
 
 export default function BootstrapCard(props) {
   return (
-    <Col className="mb-4 recipe-card" sm={4} md={3} lg={2}>
+    <Col className="mb-4 recipe" sm={4} md={3} lg={2}>
       <Card
-        className="h-100"
-        style={{
-          border: "2px solid grey",
-        }}
+        // as="div"
+        className="h-100 recipe-card"
         onClick={(e) => {
           props.handleClick(props.recipe);
         }}
+        // style={{ borderRadius: "4px", border: "2px solid black" }}
       >
         <Card.Img
-          style={{ height: "100%", objectFit: "cover" }}
+          style={{
+            height: "100%",
+            objectFit: "cover",
+            // outline: "1px solid black",
+          }}
           src={props.recipe.image}
           alt={props.recipeName}
         />
@@ -38,6 +41,7 @@ export default function BootstrapCard(props) {
               paddingLeft: ".5rem",
               paddingRight: ".5rem",
               margin: "0",
+              borderRadius: "0 0 3px 3px",
             }}
             className="text-center align-self-end card-title"
           >
