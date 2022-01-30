@@ -14,11 +14,8 @@ export default function RecipeDetails(props) {
   const getRecipeInfo = async (id) => {
     const response = await fetch(`${url}information?apiKey=${API_KEY}`);
     const data = await response.json();
-    console.log(data);
     console.log(data.creditsText);
-    console.log(data.sourceUrl);
-    console.log(data.spoonacularSourceUrl);
-    // console.log(data.cuisines);
+    console.log(data.cuisines);
     let instructions = "";
     data.analyzedInstructions[0].steps.forEach((step) => {
       instructions = instructions + step.step + "\n";
@@ -33,6 +30,7 @@ export default function RecipeDetails(props) {
       name: data.title,
       ingredients: ingredients,
       instructions: instructions,
+      url: data.sourceUrl,
       image: data.image,
     });
   };
@@ -62,19 +60,6 @@ export default function RecipeDetails(props) {
 
   let instructions;
   if (recipeData.instructions) {
-    // if (recipeData.instructions.includes("<ol>")) {
-    //   const innerHtml = recipeData.instructions;
-    //   instructions = (
-    //     <div dangerouslySetInnerHTML={{ __html: innerHtml }}></div>
-    //   );
-    // } else {
-    //   const instructionsArray = recipeData.instructions.split("\n");
-    //   instructions = instructionsArray.map((instruction, idx) => (
-    //     <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
-    //       {idx + 1}. {instruction}
-    //     </p>
-    //   ));
-    // }
     const instructionsArray = recipeData.instructions.split("\n");
     instructions = instructionsArray.map((instruction, idx) => (
       <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>

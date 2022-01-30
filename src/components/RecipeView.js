@@ -3,10 +3,15 @@ import ImagePreview from "./ImagePreview";
 export default function RecipeView(props) {
   return (
     <>
-      <h1
-        style={{ textAlign: "center", marginTop: "1rem", marginBottom: "2rem" }}
-      >
-        {props.recipe.name}
+      <h1 className="show-h1">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={props.recipe.url}
+          alt={`URL for ${props.recipe.name}`}
+        >
+          {props.recipe.name}
+        </a>
       </h1>
       {props.recipe.image && <ImagePreview recipe={props.recipe} />}
       <div className="ing-inst-div">

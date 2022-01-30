@@ -11,6 +11,8 @@ export default function Add(props) {
     name: "",
     ingredients: [],
     instructions: "",
+    //ADDITION
+    url: "",
     image: "",
   });
 
@@ -55,6 +57,16 @@ export default function Add(props) {
           name="image"
           value={recipeData.image}
           placeholder="image url"
+          onChange={handleChange}
+        />
+        {/* ADDITION */}
+        <label htmlFor="url">Recipe URL: </label>
+        <input
+          style={{ width: "100%", paddingLeft: ".75rem" }}
+          type="text"
+          name="url"
+          value={recipeData.url}
+          placeholder="recipe url"
           onChange={handleChange}
         />
         <label htmlFor="ingredients">Ingredients: </label>

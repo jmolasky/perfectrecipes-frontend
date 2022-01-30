@@ -55,6 +55,15 @@ export default function Edit(props) {
           value={recipeToEdit.image}
           onChange={handleChange}
         />
+        {/* ADDITION */}
+        <label htmlFor="url">Recipe URL: </label>
+        <input
+          style={{ width: "100%", paddingLeft: ".75rem" }}
+          type="text"
+          name="url"
+          value={recipeToEdit.url}
+          onChange={handleChange}
+        />
         <label htmlFor="ingredients">Ingredients: </label>
         <IngredientInputs
           recipe={recipeToEdit}

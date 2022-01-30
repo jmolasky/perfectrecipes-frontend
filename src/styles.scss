@@ -61,6 +61,20 @@ footer {
   margin-bottom: 0;
 }
 
+.show-h1 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: grey;
+  }
+}
+
 .recipe {
   font-size: 1.5rem;
   @include media-breakpoint-up("xs") {
