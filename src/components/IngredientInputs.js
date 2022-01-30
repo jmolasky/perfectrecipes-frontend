@@ -3,24 +3,18 @@ import {
   handleRemove,
 } from "../services/helperFunctions";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function IngredientInputs(props) {
   const ingredientsArray = props.recipe.ingredients.map((ingredient, idx) => {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space evenly",
-          width: "100%",
-          marginBottom: "1rem",
-        }}
-        key={idx}
-      >
+      <Col style={{ display: "flex" }} className="mb-2" sm={6} lg={4} key={idx}>
         <input
+          className="ingredient-input"
           style={{
             width: "85%",
             borderRadius: "4px",
-            height: "3rem",
             paddingLeft: ".75rem",
           }}
           type="text"
@@ -39,14 +33,9 @@ export default function IngredientInputs(props) {
           }}
         >
           <Button
+            as="button"
             variant="outline-danger"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              width: "2rem",
-              height: "2rem",
-              borderRadius: "50%",
-            }}
+            className="remove-btn"
             name={idx}
             onClick={(e) => {
               handleRemove(e, props.recipe, props.setterFunction);
@@ -55,8 +44,8 @@ export default function IngredientInputs(props) {
             -
           </Button>
         </div>
-      </div>
+      </Col>
     );
   });
-  return <div style={{ width: "100%" }}>{ingredientsArray}</div>;
+  return <Row>{ingredientsArray}</Row>;
 }

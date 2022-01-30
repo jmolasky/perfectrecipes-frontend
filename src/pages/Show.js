@@ -1,5 +1,6 @@
 import { capitalizeFirstLtr } from "../services/helperFunctions";
 import RecipeView from "../components/RecipeView";
+import Button from "react-bootstrap/Button";
 
 export default function Show(props) {
   const id = props.match.params.id;
@@ -39,18 +40,20 @@ export default function Show(props) {
   }
 
   return (
-    <div style={{ margin: "1rem", color: "white" }}>
+    <div style={{ margin: "1.5rem", color: "white" }}>
       <RecipeView
         recipe={recipe}
         ingredients={ingredientList}
         instructions={instructions}
       />
-      <button id="delete" onClick={handleDelete}>
-        Delete Recipe
-      </button>
-      <button id="edit" onClick={handleEditBtnClick}>
-        Edit Recipe
-      </button>
+      <div id="edit-delete">
+        <Button variant="info" id="edit" onClick={handleEditBtnClick}>
+          Edit Recipe
+        </Button>
+        <Button variant="outline-warning" id="delete" onClick={handleDelete}>
+          Delete Recipe
+        </Button>
+      </div>
     </div>
   );
 }

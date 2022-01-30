@@ -11,6 +11,7 @@ I was inspired to make this application by the common experience of finding a re
 - Express
 - React
 - HTML5
+- SASS
 - MongoDB
 - Mongoose
 - Google Firebase

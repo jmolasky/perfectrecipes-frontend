@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { capitalizeFirstLtr } from "../services/helperFunctions";
 import RecipeView from "../components/RecipeView";
+import Button from "react-bootstrap/Button";
 
 export default function RecipeDetails(props) {
   const id = props.match.params.id;
@@ -73,13 +74,15 @@ export default function RecipeDetails(props) {
 
   const loaded = () => {
     return (
-      <div style={{ margin: "1rem", color: "white" }}>
+      <div style={{ margin: "1.5rem", color: "white" }}>
         <RecipeView
           recipe={recipeData}
           ingredients={ingredientList}
           instructions={instructions}
         />
-        <button onClick={handleSave}>Save Recipe</button>
+        <Button style={{ width: "100%", height: "3rem" }} onClick={handleSave}>
+          Save Recipe
+        </Button>
       </div>
     );
   };

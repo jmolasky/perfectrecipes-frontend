@@ -5,18 +5,15 @@ export default function BootstrapCard(props) {
   return (
     <Col className="mb-4 recipe" sm={4} md={3} lg={2}>
       <Card
-        // as="div"
         className="h-100 recipe-card"
         onClick={(e) => {
           props.handleClick(props.recipe);
         }}
-        // style={{ borderRadius: "4px", border: "2px solid black" }}
       >
         <Card.Img
           style={{
             height: "100%",
             objectFit: "cover",
-            // outline: "1px solid black",
           }}
           src={props.recipe.image}
           alt={props.recipeName}

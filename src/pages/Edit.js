@@ -3,6 +3,7 @@ import IngredientInputs from "../components/IngredientInputs";
 import { handleAddIngredient } from "../services/helperFunctions";
 import ImagePreview from "../components/ImagePreview";
 import InstructionsEdit from "../components/InstructionsEdit";
+import Button from "react-bootstrap/Button";
 
 export default function Edit(props) {
   const id = props.match.params.id;
@@ -29,48 +30,48 @@ export default function Edit(props) {
   };
 
   return (
-    <div className="edit" style={{ margin: "1rem" }}>
+    <div className="edit" style={{ margin: "1rem", color: "white" }}>
       {recipeToEdit.image && <ImagePreview recipe={recipeToEdit} />}
-      <form onSubmit={handleSubmit}>
+      <form className="add-edit-form">
         <label htmlFor="name">Recipe Name: </label>
-        <br />
         <input
+          style={{ width: "100%", paddingLeft: ".75rem" }}
           type="text"
           name="name"
           value={recipeToEdit.name}
           onChange={handleChange}
         />
-        <br />
-        {}
         <label htmlFor="image">Image URL: </label>
-        <br />
         <input
+          style={{ width: "100%", paddingLeft: ".75rem" }}
           type="text"
           name="image"
           value={recipeToEdit.image}
           onChange={handleChange}
         />
-        <br />
         <label htmlFor="ingredients">Ingredients: </label>
-        <br />
         <IngredientInputs
           recipe={recipeToEdit}
           setterFunction={setRecipeToEdit}
         />
-        <button
+        <Button
+          className="add-ingredient-button"
+          variant="success"
           onClick={(e) => {
             handleAddIngredient(e, recipeToEdit, setRecipeToEdit);
           }}
         >
           +
-        </button>
-        <br />
+        </Button>
         <label htmlFor="instructions">Instructions: </label>
-        <br />
         <InstructionsEdit recipe={recipeToEdit} handleChange={handleChange} />
-        <br />
+        <Button className="add-btn" onClick={handleSubmit}>
+          Submit Changes
+        </Button>
         <input type="submit" value="Submit Changes" />
-        <button onClick={handleCancel}>Cancel</button>
+        <Button variant="secondary" onClick={handleCancel}>
+          Cancel
+        </Button>
       </form>
     </div>
   );
