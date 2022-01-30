@@ -37,7 +37,7 @@ export default function Index(props) {
   };
 
   const loading = () => {
-    return <h1>Loading...</h1>;
+    return <h1 style={{ textAlign: "center", color: "white" }}>Loading...</h1>;
   };
   return props.recipes ? loaded() : loading();
 }

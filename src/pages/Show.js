@@ -46,11 +46,15 @@ export default function Show(props) {
         ingredients={ingredientList}
         instructions={instructions}
       />
-      <div id="edit-delete">
-        <Button variant="info" id="edit" onClick={handleEditBtnClick}>
+      <div className="two-btn-group">
+        <Button variant="info" className="fw-btn" onClick={handleEditBtnClick}>
           Edit Recipe
         </Button>
-        <Button variant="outline-warning" id="delete" onClick={handleDelete}>
+        <Button
+          variant="outline-warning"
+          className="fw-btn"
+          onClick={handleDelete}
+        >
           Delete Recipe
         </Button>
       </div>

@@ -53,34 +53,17 @@ export default function Search(props) {
           marginBottom: "2rem",
         }}
       >
-        Search for a recipe
+        Search for a Recipe
       </h1>
-      <form
-        style={{ textAlign: "center", marginBottom: "2rem", width: "100%" }}
-      >
-        <input
-          style={{
-            height: "3rem",
-            width: "100%",
-            marginBottom: "2rem",
-            paddingLeft: ".75rem",
-            borderRadius: "4px",
-          }}
-          type="text"
-          name="query"
-          value={query}
-          onChange={handleChange}
-        />
-        <Button
-          style={{ height: "3rem", width: "100%" }}
-          onClick={handleSearch}
-          disabled={query ? false : true}
-        >
+      <form className="search-form">
+        <input type="text" name="query" value={query} onChange={handleChange} />
+        <br />
+        <Button onClick={handleSearch} disabled={query ? false : true}>
           Search
         </Button>
       </form>
       {noResults && (
-        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+        <div style={{ textAlign: "center", marginTop: "1rem", color: "white" }}>
           {noResults}
         </div>
       )}

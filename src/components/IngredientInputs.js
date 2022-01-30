@@ -13,7 +13,7 @@ export default function IngredientInputs(props) {
         <input
           className="ingredient-input"
           style={{
-            width: "85%",
+            width: "90%",
             borderRadius: "4px",
             paddingLeft: ".75rem",
           }}
@@ -27,14 +27,15 @@ export default function IngredientInputs(props) {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "left",
             alignItems: "center",
-            width: "15%",
+            width: "10%",
+            marginLeft: ".25rem",
           }}
         >
           <Button
             as="button"
-            variant="outline-danger"
+            variant="danger"
             className="remove-btn"
             name={idx}
             onClick={(e) => {

@@ -1,24 +1,14 @@
+import ImagePreview from "./ImagePreview";
+
 export default function RecipeView(props) {
   return (
     <>
       <h1
-        style={{ textAlign: "center", marginTop: "2rem", marginBottom: "2rem" }}
+        style={{ textAlign: "center", marginTop: "1rem", marginBottom: "2rem" }}
       >
         {props.recipe.name}
       </h1>
-      {props.recipe.image && (
-        <div className="show-img-container">
-          <div
-            className="show-img"
-            style={{
-              position: "relative",
-              backgroundImage: `url(${props.recipe.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          ></div>
-        </div>
-      )}
+      {props.recipe.image && <ImagePreview recipe={props.recipe} />}
       <div className="ing-inst-div">
         <div style={{ marginTop: "1.5rem" }} className="ingredients">
           <h3>Ingredients</h3>

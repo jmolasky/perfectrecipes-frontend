@@ -69,18 +69,21 @@ export default function RecipeDetails(props) {
   }
 
   const loading = () => {
-    return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+    return <h1 style={{ textAlign: "center", color: "white" }}>Loading...</h1>;
   };
 
   const loaded = () => {
     return (
-      <div style={{ margin: "1.5rem", color: "white" }}>
+      <div
+        className="recipe-details"
+        style={{ margin: "1.5rem", color: "white" }}
+      >
         <RecipeView
           recipe={recipeData}
           ingredients={ingredientList}
           instructions={instructions}
         />
-        <Button style={{ width: "100%", height: "3rem" }} onClick={handleSave}>
+        <Button className="save-btn" onClick={handleSave}>
           Save Recipe
         </Button>
       </div>

@@ -30,7 +30,13 @@ export default function Edit(props) {
   };
 
   return (
-    <div className="edit" style={{ margin: "1rem", color: "white" }}>
+    <div
+      className="edit"
+      style={{
+        margin: "1rem",
+        color: "white",
+      }}
+    >
       {recipeToEdit.image && <ImagePreview recipe={recipeToEdit} />}
       <form className="add-edit-form">
         <label htmlFor="name">Recipe Name: </label>
@@ -65,13 +71,14 @@ export default function Edit(props) {
         </Button>
         <label htmlFor="instructions">Instructions: </label>
         <InstructionsEdit recipe={recipeToEdit} handleChange={handleChange} />
-        <Button className="add-btn" onClick={handleSubmit}>
-          Submit Changes
-        </Button>
-        <input type="submit" value="Submit Changes" />
-        <Button variant="secondary" onClick={handleCancel}>
-          Cancel
-        </Button>
+        <div className="two-btn-group">
+          <Button className="fw-btn" onClick={handleSubmit}>
+            Submit
+          </Button>
+          <Button className="fw-btn" variant="secondary" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </div>
       </form>
     </div>
   );

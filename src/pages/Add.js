@@ -71,7 +71,7 @@ export default function Add(props) {
         <label htmlFor="instructions">Instructions: </label>
         <InstructionsEdit recipe={recipeData} handleChange={handleChange} />
         <Button
-          className="add-btn"
+          className="add-edit-btn"
           onClick={handleSubmit}
           disabled={
             recipeData.name &&
