@@ -36,7 +36,7 @@ export default function Add(props) {
 
   return (
     <div className="add" style={{ margin: "1rem", color: "white" }}>
-      <h1 style={{ textAlign: "center" }}>Add a Recipe</h1>
+      <h1 style={{ textAlign: "center", marginTop: "1.5rem" }}>Add a Recipe</h1>
       {recipeData.image && <ImagePreview recipe={recipeData} />}
       <form className="add-edit-form">
         <label htmlFor="name">Recipe Name: </label>

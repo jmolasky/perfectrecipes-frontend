@@ -19,24 +19,43 @@ export default function Show(props) {
     <li key={idx}>{capitalizeFirstLtr(ingredient)}</li>
   ));
 
+  const instructionsArray = recipe.instructions.split("\n");
   let instructions;
-  if (recipe.instructions.includes("<ol>")) {
-    const innerHtml = recipe.instructions;
-    instructions = <div dangerouslySetInnerHTML={{ __html: innerHtml }}></div>;
-  } else if (recipe.instructions.charAt(0) !== "1") {
-    const instructionsArray = recipe.instructions.split("\n");
-    instructions = instructionsArray.map((instruction, idx) => (
-      <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
-        {idx + 1}. {instruction}
-      </p>
-    ));
+  // if (recipe.instructions.includes("<ol>")) {
+  //   const innerHtml = recipe.instructions;
+  //   instructions = <div dangerouslySetInnerHTML={{ __html: innerHtml }}></div>;
+  // } else if (recipe.instructions.charAt(0) !== "1") {
+  //   const instructionsArray = recipe.instructions.split("\n");
+  //   instructions = instructionsArray.map((instruction, idx) => (
+  //     <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+  //       {idx + 1}. {instruction}
+  //     </p>
+  //   ));
+  // } else {
+  //   const instructionsArray = recipe.instructions.split("\n");
+  //   instructions = instructionsArray.map((instruction, idx) => (
+  //     <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+  //       {instruction}
+  //     </p>
+  //   ));
+  // }
+
+  if (recipe.instructions.charAt(0) !== "1") {
+    instructions = instructionsArray.map((instruction, idx) => {
+      return (
+        <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+          {idx + 1}. {instruction}
+        </p>
+      );
+    });
   } else {
-    const instructionsArray = recipe.instructions.split("\n");
-    instructions = instructionsArray.map((instruction, idx) => (
-      <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
-        {instruction}
-      </p>
-    ));
+    instructions = instructionsArray.map((instruction, idx) => {
+      return (
+        <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
+          {instruction}
+        </p>
+      );
+    });
   }
 
   return (

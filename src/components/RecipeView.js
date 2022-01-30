@@ -10,7 +10,7 @@ export default function RecipeView(props) {
       </h1>
       {props.recipe.image && <ImagePreview recipe={props.recipe} />}
       <div className="ing-inst-div">
-        <div style={{ marginTop: "1.5rem" }} className="ingredients">
+        <div style={{ marginTop: "1rem" }} className="ingredients">
           <h3>Ingredients</h3>
           <ul>{props.ingredients}</ul>
         </div>

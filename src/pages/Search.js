@@ -49,16 +49,16 @@ export default function Search(props) {
         style={{
           textAlign: "center",
           color: "white",
-          marginTop: "2rem",
+          marginTop: "1.5rem",
           marginBottom: "2rem",
         }}
       >
         Search for a Recipe
       </h1>
-      <form className="search-form">
+      <form onSubmit={handleSearch} className="search-form">
         <input type="text" name="query" value={query} onChange={handleChange} />
         <br />
-        <Button onClick={handleSearch} disabled={query ? false : true}>
+        <Button type="submit" disabled={query ? false : true}>
           Search
         </Button>
       </form>

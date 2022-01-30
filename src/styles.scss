@@ -10,10 +10,10 @@
   flex-grow: 1;
 }
 
-@mixin show-img-size {
-  width: 100%;
-  padding-top: 66.66%;
-}
+// @mixin show-img-size {
+//   width: 100%;
+//   padding-top: 66.66%;
+// }
 
 @mixin full-width-button {
   margin-top: 2rem;
@@ -41,19 +41,6 @@ body {
   background-image: url("https://i.imgur.com/48RRo8L.jpg");
   background-size: cover;
   background-position: center;
-}
-
-.show-img-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.show-img {
-  @include show-img-size;
-  img {
-    object-fit: cover;
-  }
 }
 
 button:hover {
@@ -121,6 +108,13 @@ footer {
   @include media-breakpoint-up("sm") {
     font-size: 1rem;
   }
+}
+
+.ing-inst-div {
+  padding: 0.25rem;
+  background-color: #313232a1;
+  margin-top: 1rem;
+  border-radius: 5px;
 }
 
 .add-edit-form {
@@ -237,11 +231,5 @@ footer {
     width: 8rem;
     height: 2.5rem;
     margin-left: 2rem;
-  }
-}
-
-@media only screen and (min-width: 426px) {
-  .show-img {
-    @include show-img-size;
   }
 }
