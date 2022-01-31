@@ -27,19 +27,6 @@ export default function BootstrapCard(props) {
           <Card.Title
             // "as" gives sass stylesheet access
             as="div"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              width: "100%",
-              height: "25%",
-              backgroundColor: "#575757c9",
-              color: "#d8d8d8",
-              paddingLeft: ".5rem",
-              paddingRight: ".5rem",
-              margin: "0",
-              borderRadius: "0 0 3px 3px",
-            }}
             className="text-center align-self-end card-title"
           >
             <div
