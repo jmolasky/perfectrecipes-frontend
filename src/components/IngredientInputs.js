@@ -42,7 +42,7 @@ export default function IngredientInputs(props) {
               handleRemove(e, props.recipe, props.setterFunction);
             }}
           >
-            -
+            x
           </Button>
         </div>
       </Col>

@@ -80,19 +80,22 @@ export default function Add(props) {
         </Button>
         <label htmlFor="instructions">Instructions: </label>
         <InstructionsEdit recipe={recipeData} handleChange={handleChange} />
-        <Button
-          className="fw-btn"
-          onClick={handleSubmit}
-          disabled={
-            recipeData.name &&
-            recipeData.ingredients.length > 0 &&
-            recipeData.instructions
-              ? false
-              : true
-          }
-        >
-          Add Recipe
-        </Button>
+        <div className="btn-group">
+          <div className="fw-btn">
+            <Button
+              onClick={handleSubmit}
+              disabled={
+                recipeData.name &&
+                recipeData.ingredients.length > 0 &&
+                recipeData.instructions
+                  ? false
+                  : true
+              }
+            >
+              Add Recipe
+            </Button>
+          </div>
+        </div>
       </form>
     </div>
   );
