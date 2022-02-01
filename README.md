@@ -20,7 +20,7 @@ I was inspired to make this application by the common experience of finding a re
 - Mongoose
 - Google Firebase
 - Inline CSS
-- Spoontacular API
+- Spoonacular API
 
 ## Screenshots
 

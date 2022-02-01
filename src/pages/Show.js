@@ -1,6 +1,8 @@
 import { capitalizeFirstLtr } from "../services/helperFunctions";
 import RecipeView from "../components/RecipeView";
 import Button from "react-bootstrap/Button";
+// import Row from "react-bootstrap/Row";
+// import Col from "react-bootstrap/Col";
 
 export default function Show(props) {
   const id = props.match.params.id;
@@ -59,23 +61,45 @@ export default function Show(props) {
   }
 
   return (
-    <div style={{ margin: "1.5rem", color: "white" }}>
+    <div className="show" style={{ margin: "1.5rem", color: "white" }}>
       <RecipeView
         recipe={recipe}
         ingredients={ingredientList}
         instructions={instructions}
       />
-      <div className="two-btn-group">
-        <Button variant="info" className="fw-btn" onClick={handleEditBtnClick}>
-          Edit Recipe
-        </Button>
-        <Button
-          variant="outline-warning"
-          className="fw-btn"
-          onClick={handleDelete}
-        >
-          Delete Recipe
-        </Button>
+      {/* <Row className="mt-4 justify-content-center" xs={1} sm={8}>
+        <Col md={2} lg={1}>
+          <Button
+            as="div"
+            className="fw-btn w-100 mb-4"
+            variant="info"
+            onClick={handleEditBtnClick}
+          >
+            Edit Recipe
+          </Button>
+        </Col>
+        <Col md={2} lg={1}>
+          <Button
+            as="div"
+            className="fw-btn w-100 mb-2"
+            variant="outline-warning"
+            onClick={handleDelete}
+          >
+            Delete Recipe
+          </Button>
+        </Col>
+      </Row> */}
+      <div className="btn-group">
+        <div className="fw-btn">
+          <Button variant="info" onClick={handleEditBtnClick}>
+            Edit Recipe
+          </Button>
+        </div>
+        <div className="fw-btn">
+          <Button variant="outline-warning" onClick={handleDelete}>
+            Delete Recipe
+          </Button>
+        </div>
       </div>
     </div>
   );

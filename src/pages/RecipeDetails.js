@@ -89,9 +89,11 @@ export default function RecipeDetails(props) {
           ingredients={ingredientList}
           instructions={instructions}
         />
-        <Button className="save-btn" onClick={handleSave}>
-          Save Recipe
-        </Button>
+        <div className="btn-group">
+          <div className="fw-btn">
+            <Button onClick={handleSave}>Save Recipe</Button>
+          </div>
+        </div>
       </div>
     );
   };

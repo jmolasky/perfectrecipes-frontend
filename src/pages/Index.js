@@ -19,18 +19,18 @@ export default function Index(props) {
   const loaded = () => {
     return (
       <Container>
-        {props.user.displayName && (
-          <h2
-            style={{
-              textAlign: "center",
-              color: "white",
-              marginTop: "2rem",
-              marginBottom: "2rem",
-            }}
-          >
-            Welcome, {props.user.displayName.split(" ")[0]}!
-          </h2>
-        )}
+        <h2
+          style={{
+            textAlign: "center",
+            color: "white",
+            marginTop: "2rem",
+            marginBottom: "2rem",
+          }}
+        >
+          {props.user.displayName
+            ? `Here are your recipes, ${props.user.displayName.split(" ")[0]}!`
+            : "My Recipes"}
+        </h2>
         <Row style={{ justifyContent: "center" }}>{recipes}</Row>
       </Container>
     );

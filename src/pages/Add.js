@@ -11,7 +11,6 @@ export default function Add(props) {
     name: "",
     ingredients: [],
     instructions: "",
-    //ADDITION
     url: "",
     image: "",
   });
@@ -59,7 +58,6 @@ export default function Add(props) {
           placeholder="image url"
           onChange={handleChange}
         />
-        {/* ADDITION */}
         <label htmlFor="url">Recipe URL: </label>
         <input
           style={{ width: "100%", paddingLeft: ".75rem" }}
@@ -83,7 +81,7 @@ export default function Add(props) {
         <label htmlFor="instructions">Instructions: </label>
         <InstructionsEdit recipe={recipeData} handleChange={handleChange} />
         <Button
-          className="add-edit-btn"
+          className="fw-btn"
           onClick={handleSubmit}
           disabled={
             recipeData.name &&

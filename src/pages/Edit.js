@@ -38,55 +38,58 @@ export default function Edit(props) {
       }}
     >
       {recipeToEdit.image && <ImagePreview recipe={recipeToEdit} />}
-      <form className="add-edit-form">
-        <label htmlFor="name">Recipe Name: </label>
-        <input
-          style={{ width: "100%", paddingLeft: ".75rem" }}
-          type="text"
-          name="name"
-          value={recipeToEdit.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="image">Image URL: </label>
-        <input
-          style={{ width: "100%", paddingLeft: ".75rem" }}
-          type="text"
-          name="image"
-          value={recipeToEdit.image}
-          onChange={handleChange}
-        />
-        {/* ADDITION */}
-        <label htmlFor="url">Recipe URL: </label>
-        <input
-          style={{ width: "100%", paddingLeft: ".75rem" }}
-          type="text"
-          name="url"
-          value={recipeToEdit.url}
-          onChange={handleChange}
-        />
-        <label htmlFor="ingredients">Ingredients: </label>
-        <IngredientInputs
-          recipe={recipeToEdit}
-          setterFunction={setRecipeToEdit}
-        />
-        <Button
-          className="add-ingredient-button"
-          variant="success"
-          onClick={(e) => {
-            handleAddIngredient(e, recipeToEdit, setRecipeToEdit);
-          }}
-        >
-          +
-        </Button>
-        <label htmlFor="instructions">Instructions: </label>
-        <InstructionsEdit recipe={recipeToEdit} handleChange={handleChange} />
-        <div className="two-btn-group">
-          <Button className="fw-btn" onClick={handleSubmit}>
-            Submit
+      <form>
+        <div className="add-edit-form">
+          <label htmlFor="name">Recipe Name: </label>
+          <input
+            style={{ width: "100%", paddingLeft: ".75rem" }}
+            type="text"
+            name="name"
+            value={recipeToEdit.name}
+            onChange={handleChange}
+          />
+          <label htmlFor="image">Image URL: </label>
+          <input
+            style={{ width: "100%", paddingLeft: ".75rem" }}
+            type="text"
+            name="image"
+            value={recipeToEdit.image}
+            onChange={handleChange}
+          />
+          <label htmlFor="url">Recipe URL: </label>
+          <input
+            style={{ width: "100%", paddingLeft: ".75rem" }}
+            type="text"
+            name="url"
+            value={recipeToEdit.url}
+            onChange={handleChange}
+          />
+          <label htmlFor="ingredients">Ingredients: </label>
+          <IngredientInputs
+            recipe={recipeToEdit}
+            setterFunction={setRecipeToEdit}
+          />
+          <Button
+            className="add-ingredient-button"
+            variant="success"
+            onClick={(e) => {
+              handleAddIngredient(e, recipeToEdit, setRecipeToEdit);
+            }}
+          >
+            +
           </Button>
-          <Button className="fw-btn" variant="secondary" onClick={handleCancel}>
-            Cancel
-          </Button>
+          <label htmlFor="instructions">Instructions: </label>
+          <InstructionsEdit recipe={recipeToEdit} handleChange={handleChange} />
+        </div>
+        <div className="btn-group">
+          <div className="fw-btn">
+            <Button onClick={handleSubmit}>Submit</Button>
+          </div>
+          <div className="fw-btn">
+            <Button variant="secondary" onClick={handleCancel}>
+              Cancel
+            </Button>
+          </div>
         </div>
       </form>
     </div>
