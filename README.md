@@ -6,6 +6,12 @@ I was inspired to make this application by the common experience of finding a re
 
 ## Features
 
+Once signed in, a user can add recipes to their account, which are displayed on the home page in clickable card format. Users can view their recipes by clicking the cards, after which there is also the option to either edit or delete the recipe.
+
+An additional feature that I added is a search page, where a user can search for recipes using a free recipe API I found via Spoonacular. Unfortunately, since I am using the free version, the number of API requests per day is limited to ~150. Each search is an API call, and if a user clicks on a card in the search results, a further API call is triggered that fetches the data for that particular recipe.
+
+If a user decides that they want to save the recipe, they can click a button and the recipe will be added to their account. Now they can view it without needing to search.
+
 ## Technologies Used
 
 - JavaScript
@@ -21,17 +27,25 @@ I was inspired to make this application by the common experience of finding a re
 - Google Firebase
 - Inline CSS
 - Spoonacular API
+- Localstorage
 
 ## Screenshots
 
-![App](#)
-
-!
+![Login page](https://i.imgur.com/83QDQtfm.png)
+![Home page](https://i.imgur.com/gRAdiOSm.png)
+![Recipe show page](https://i.imgur.com/r88vIaEm.png)
+![Edit page](https://i.imgur.com/3XMxBbYm.png)
+![Recipe add page](https://i.imgur.com/0JWEjJxm.png)
+![Search page](https://i.imgur.com/8LsRnD9m.png)
 
 ## Getting Started
 
-[Click here](#) to see the site live!
+[Click here](https://perfect-recipes.netlify.app/) to see the site live!
 
 You can log in with Google, or create an account with an email address and password.
 
 ## Future Enhancements/Next Steps
+
+- The addition of categories/tags to the application, which will require modifying the database schema and refactoring routes
+
+- A user dashboard that allows users to make a profile that they can edit
