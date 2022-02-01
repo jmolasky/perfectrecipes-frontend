@@ -31,12 +31,12 @@ If a user decides that they want to save the recipe, they can click a button and
 
 ## Screenshots
 
-![Login page](https://i.imgur.com/83QDQtfm.png)
-![Home page](https://i.imgur.com/gRAdiOSm.png)
-![Recipe show page](https://i.imgur.com/r88vIaEm.png)
-![Edit page](https://i.imgur.com/3XMxBbYm.png)
-![Recipe add page](https://i.imgur.com/0JWEjJxm.png)
-![Search page](https://i.imgur.com/8LsRnD9m.png)
+![Login page](https://i.imgur.com/83QDQtfl.png)
+![Home page](https://i.imgur.com/gRAdiOSl.png)
+![Recipe show page](https://i.imgur.com/r88vIaEl.png)
+![Edit page](https://i.imgur.com/3XMxBbYl.png)
+![Recipe add page](https://i.imgur.com/0JWEjJxl.png)
+![Search page](https://i.imgur.com/8LsRnD9l.png)
 
 ## Getting Started
 
