@@ -48,6 +48,26 @@ button:hover {
   cursor: pointer;
 }
 
+#login-form {
+  label {
+    font-size: 1.5rem;
+    @include media-breakpoint-up("sm") {
+      font-size: 1.25rem;
+    }
+  }
+  input {
+    height: 3rem;
+    @include media-breakpoint-up("sm") {
+      height: 2.5rem;
+    }
+  }
+  h5 {
+    @include media-breakpoint-up("sm") {
+      font-size: 1rem;
+    }
+  }
+}
+
 .signup-btn:hover {
   text-decoration: underline;
 }

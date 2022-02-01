@@ -53,10 +53,11 @@ export default function Login(props) {
       className="login"
     >
       <form
+        id="login-form"
         style={{
           display: "flex",
           flexDirection: "column",
-          maxWidth: "25rem",
+          maxWidth: "22rem",
           width: "100%",
           marginTop: "2rem",
           fontSize: "1.5rem",
@@ -66,7 +67,7 @@ export default function Login(props) {
         <label htmlFor="email">Email</label>
         <input
           className="mb-2"
-          style={{ borderRadius: "4px", height: "3rem", paddingLeft: ".75rem" }}
+          style={{ borderRadius: "4px", paddingLeft: ".75rem" }}
           name="email"
           value={loginCredentials.email}
           placeholder="email"
@@ -76,7 +77,7 @@ export default function Login(props) {
         <label htmlFor="password">Password</label>
         <input
           className="mb-2"
-          style={{ borderRadius: "4px", height: "3rem", paddingLeft: ".75rem" }}
+          style={{ borderRadius: "4px", paddingLeft: ".75rem" }}
           name="password"
           value={loginCredentials.password}
           placeholder="password"
@@ -84,7 +85,7 @@ export default function Login(props) {
           onChange={handleChange}
         />
         <Button
-          style={{ height: "3rem", fontSize: "1.5rem" }}
+          style={{ height: "3rem", fontSize: "1.5rem", marginTop: "1rem" }}
           disabled={
             loginCredentials.email && loginCredentials.password ? false : true
           }
@@ -104,11 +105,8 @@ export default function Login(props) {
           Not yet registered?{" "}
           <span>
             <Button
-              // className="signup-btn"
               variant="link"
               style={{
-                // border: "none",
-                // background: "none",
                 padding: "0",
                 fontsize: "1.5rem",
                 color: "white",
