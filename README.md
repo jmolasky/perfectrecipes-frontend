@@ -8,11 +8,13 @@ I was inspired to make this application by the common experience of finding a re
 
 ## Features
 
-Once signed in, a user can add recipes to their account, which are displayed on the home page in clickable card format. Users can view their recipes by clicking the cards, after which there is also the option to either edit or delete the recipe.
+Once signed in, a user can add recipes to their account by either filling in a form or clicking a button to parse a supported recipe website URL. Please see the list of supported recipe websites in the `recipe-scraper` documentation [here](https://github.com/jadkins89/Recipe-Scraper).
 
-An additional feature that I added is a search page, where a user can search for recipes using a free recipe API I found via Spoonacular. Unfortunately, since I am using the free version, the number of API requests per day is limited to ~150. Each search is an API call, and if a user clicks on a card in the search results, a further API call is triggered that fetches the data for that particular recipe.
+Recipes are displayed on the user's home page in clickable card format. Users can view the full recipes by clicking the cards, after which there is also the option to either edit or delete the recipe.
 
-If a user decides that they want to save the recipe, they can click a button and the recipe will be added to their account. Now they can view it without needing to search.
+An additional feature that I added is a search page, where a user can search for recipes using a free recipe API I found via [Spoonacular](https://spoonacular.com/food-api). Unfortunately, since I am using the free version, the number of API requests per day is limited to ~150. Each search is an API call, and if a user clicks on a card in the search results, a further API call is triggered that fetches the data for that particular recipe.
+
+If a user decides that they want to save the recipe from the search, they can click a button and the recipe will be added to their account. Now they can view it without needing to search.
 
 ## Technologies Used
 
@@ -29,6 +31,8 @@ If a user decides that they want to save the recipe, they can click a button and
 - Google Firebase
 - Inline CSS
 - Spoonacular API
+- immutability-helper
+- recipe-scraper
 - Localstorage
 
 ## Screenshots
