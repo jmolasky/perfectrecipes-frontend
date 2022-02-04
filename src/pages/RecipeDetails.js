@@ -14,14 +14,15 @@ export default function RecipeDetails(props) {
   const getRecipeInfo = async (id) => {
     const response = await fetch(`${url}information?apiKey=${API_KEY}`);
     const data = await response.json();
-    console.log(data.creditsText);
-    console.log(data.cuisines);
     let instructions = "";
-    data.analyzedInstructions[0].steps.forEach((step) => {
-      instructions = instructions + step.step + "\n";
-    });
-    instructions = instructions.slice(0, -2);
-    console.log(instructions);
+    if (data.analyzedInstructions && data.analyzedInstructions.length !== 0) {
+      data.analyzedInstructions[0].steps.forEach((step) => {
+        instructions = instructions + step.step + "\n";
+      });
+      instructions = instructions.slice(0, -2);
+    } else {
+      instructions = [];
+    }
     const ingredients = data.extendedIngredients.map((ingredient) => {
       return ingredient.original;
     });
@@ -59,7 +60,7 @@ export default function RecipeDetails(props) {
   }
 
   let instructions;
-  if (recipeData.instructions) {
+  if (recipeData.instructions && recipeData.instructions.length !== 0) {
     const instructionsArray = recipeData.instructions.split("\n");
     instructions = instructionsArray.map((instruction, idx) => (
       <p key={idx} style={{ marginTop: ".5rem", marginBottom: ".5rem" }}>
@@ -79,6 +80,7 @@ export default function RecipeDetails(props) {
   };
 
   const loaded = () => {
+    const disabled = recipeData.instructions.length !== 0 ? false : true;
     return (
       <div
         className="recipe-details"
@@ -91,7 +93,9 @@ export default function RecipeDetails(props) {
         />
         <div className="btn-group">
           <div className="fw-btn">
-            <Button onClick={handleSave}>Save Recipe</Button>
+            <Button disabled={disabled} onClick={handleSave}>
+              Save Recipe
+            </Button>
           </div>
         </div>
       </div>

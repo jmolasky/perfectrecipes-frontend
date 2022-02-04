@@ -14,6 +14,7 @@ export default function Main(props) {
   const getRecipesRef = useRef();
 
   const URL = "https://perfectrecipes-backend.herokuapp.com/";
+  // const URL = "http://localhost:3001/";
 
   const getRecipes = async () => {
     if (!props.user) return;
@@ -96,6 +97,7 @@ export default function Main(props) {
         <PrivateRoute
           path="/add"
           user={props.user}
+          url={URL}
           createRecipes={createRecipes}
           component={Add}
         />
