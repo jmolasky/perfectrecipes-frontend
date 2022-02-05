@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A web application that uses React, MongoDB, Express, Google Firebase, and the Spoontacular API to allow users to save, customize, and search for recipes.
+A web application that uses React, MongoDB, Express, Google Firebase, and the Spoonacular API to allow users to save, customize, and search for recipes.
 
 I was inspired to make this application by the common experience of finding a recipe online that looks good, only to have to scroll all the way to the bottom of the page each time I view it just to see the ingredients and instructions.
 
