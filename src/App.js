@@ -7,18 +7,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     //useEffect only runs once but it sets a subscription that sets the user whenever auth state changes
     auth.onAuthStateChanged((user) => {
       setUser(user);
+      setIsLoading(false);
     });
   }, []);
 
   return (
     <div className="App">
       <Header user={user} />
-      <Main user={user} />
+      <Main user={user} isLoading={isLoading}/>
     </div>
   );
 }

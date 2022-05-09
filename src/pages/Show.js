@@ -1,11 +1,15 @@
 import { capitalizeFirstLtr } from "../services/helperFunctions";
 import RecipeView from "../components/RecipeView";
 import Button from "react-bootstrap/Button";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Loading from "./Loading";
 
 export default function Show(props) {
+
   const id = props.match.params.id;
+  if(props.recipes.length === 0) {
+    return <Loading />
+  }
+ 
   const recipe = props.recipes.find((recipe) => recipe._id === id);
 
   const handleDelete = () => {

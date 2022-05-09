@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import BootstrapCard from "../components/BootstrapCard";
 import Row from "react-bootstrap/Row";
+import Loading from "./Loading";
 
 export default function Index(props) {
   const handleClick = (recipe) => {
@@ -36,8 +37,5 @@ export default function Index(props) {
     );
   };
 
-  const loading = () => {
-    return <h1 style={{ textAlign: "center", color: "white" }}>Loading...</h1>;
-  };
-  return props.recipes ? loaded() : loading();
+  return props.recipes ? loaded() : <Loading />;
 }
