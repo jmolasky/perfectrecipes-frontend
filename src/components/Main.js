@@ -27,6 +27,7 @@ export default function Main(props) {
     });
     const data = await response.json();
     setRecipes(data);
+    // window.localStorage.setItem("recipes", JSON.stringify(data));
   };
 
   const createRecipes = async (recipe) => {
@@ -92,12 +93,14 @@ export default function Main(props) {
           path="/"
           user={props.user}
           recipes={recipes}
+          isLoading={props.isLoading}
           component={Index}
         />
         <PrivateRoute
           path="/add"
           user={props.user}
           url={URL}
+          isLoading={props.isLoading}
           createRecipes={createRecipes}
           component={Add}
         />
@@ -105,11 +108,13 @@ export default function Main(props) {
           exact
           path="/search"
           user={props.user}
+          isLoading={props.isLoading}
           component={Search}
         />
         <PrivateRoute
           path="/search/:id"
           user={props.user}
+          isLoading={props.isLoading}
           createRecipes={createRecipes}
           component={RecipeDetails}
         />
@@ -117,6 +122,7 @@ export default function Main(props) {
           path="/:id/edit"
           user={props.user}
           recipes={recipes}
+          isLoading={props.isLoading}
           updateRecipes={updateRecipes}
           component={Edit}
         />
@@ -124,6 +130,7 @@ export default function Main(props) {
           path="/:id"
           user={props.user}
           recipes={recipes}
+          isLoading={props.isLoading}
           deleteRecipes={deleteRecipes}
           component={Show}
         />
