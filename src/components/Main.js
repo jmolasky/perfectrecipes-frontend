@@ -13,7 +13,8 @@ export default function Main(props) {
   const [recipes, setRecipes] = useState([]);
   const getRecipesRef = useRef();
 
-  const URL = "https://perfectrecipes-backend.herokuapp.com/";
+  const URL = "https://perfectrecipes-backend.up.railway.app/";
+  // const URL = "https://perfectrecipes-backend.herokuapp.com/";
   // const URL = "http://localhost:3001/";
 
   const getRecipes = async () => {
